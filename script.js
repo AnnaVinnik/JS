@@ -4,6 +4,14 @@ let userName;
 let adult;
 let age;
 
+createUser();
+showUser();
+
+function showUser() {
+    showValue("name", userName);
+    showValue("adult", adult);
+    showValue("age", age);
+}
 
 function getName() {
     let userName = prompt("Could you tell your name, please?");
@@ -16,18 +24,22 @@ function checkAdult() {
 
 function getAge() {
     let age = prompt("How old are you?");
-    if (age != undefined) {
-        if (+age >= 0 && +age <= 150) {
-            return +age;
-        }
+
+    if (age == undefined) {
+        return "no age";
     }
+    
+    if (+age >= 0 && +age <= 150) {
+        return +age;
+    }
+    
     return "no age";
 }
 
 function createUser() {
     let showType = (nameOfVariable, variable) => console.log(`Type of ${nameOfVariable}: ${typeof(variable)}`);
 
-    //userName = getName();
+    userName = getName();
     //adult = checkAdult();
     age = getAge();
     showType("age", age);
@@ -36,15 +48,3 @@ function createUser() {
 function showValue(nameOfValue, value) {
     console.log(nameOfValue + ": " + value);
 }
-
-function showUser() {
-    showValue("name", userName);
-    showValue("adult", adult);
-    showValue("age", age);
-}
-
-createUser();
-showUser();
-
-
-
