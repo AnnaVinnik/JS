@@ -4,8 +4,8 @@ let userName;
 let adult;
 let age;
 
-createUser();
-showUser();
+//createUser();
+//showUser();
 
 function showUser() {
     showValue("name", userName);
