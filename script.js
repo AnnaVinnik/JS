@@ -1,16 +1,43 @@
 "use strict";
 
-let userName;
-let adult;
-let age;
+// let userName;
+// let adult;
+// let age;
 
-createUser();
-showUser();
+let user = {
+    userName: "Anna",
+    adult: undefined,
+    age: 24,
+    showUser() {
+        for (let key in user) {
+            console.log(user[key]);
+        }
+    }
+};
 
-function showUser() {
-    showValue("name", userName);
-    showValue("adult", adult);
-    showValue("age", age);
+//createUser();
+user.showUser();
+
+//showAllProperties();
+//showProperty( askQuestion("Choose property") );
+
+function showAllProperties() {
+    console.log("List of properties:");
+
+    for (let property in user) {
+        console.log(property);
+    }
+}
+
+
+function showProperty(nameOfProperty) {
+    console.log(nameOfProperty + 
+        ": " + 
+        user[nameOfProperty]);
+}
+
+function askQuestion(Question) {
+    return prompt(Question);
 }
 
 function getName() {
@@ -37,14 +64,13 @@ function getAge() {
 }
 
 function createUser() {
-    let showType = (nameOfVariable, variable) => console.log(`Type of ${nameOfVariable}: ${typeof(variable)}`);
+    let showType = (nameOfVariable, variable) => {
+        console.log(`Type of ${nameOfVariable}: ${typeof(variable)}`)
+    };
 
-    userName = getName();
+    user.userName = getName();
     //adult = checkAdult();
-    age = getAge();
-    showType("age", age);
+    user.age = getAge();
+    showType("age", user.age);
 }
 
-function showValue(nameOfValue, value) {
-    console.log(nameOfValue + ": " + value);
-}
