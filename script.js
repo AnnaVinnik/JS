@@ -4,19 +4,34 @@
 // let adult;
 // let age;
 
+const mouse = {
+    type: "animal",
+    age: 3,
+};
+
 let user = {
     userName: "Anna",
     adult: undefined,
     age: 24,
-    showUser() {
-        for (let key in user) {
-            console.log(user[key]);
+    showUser(top = true, bottom = true) {
+        const keys = Object.keys(this);
+        if (top) {
+            console.log("-----------Start-------------");
+        }
+        keys.forEach( 
+            (key) => { console.log(`${key}: ${this[key]}`) } 
+            );
+        if (bottom) {
+            console.log("------------End--------------");
         }
     }
 };
 
 //createUser();
-user.showUser();
+// const bound =  user.showUser.bind(mouse);
+// bound();
+
+user.showUser.call(mouse);
 
 //showAllProperties();
 //showProperty( askQuestion("Choose property") );
