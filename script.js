@@ -1,8 +1,29 @@
 "use strict";
 
-// let userName;
-// let adult;
-// let age;
+const people = [
+    {name: "Anna", profession: "programmer"},
+    {name: "Irina", profession: "accounter"},
+    {name: "Olga", profession: "psytherapist"},
+    {name: "Anastasia", profession: "programmer"},
+];
+
+// const people = ["Anna", "Irina", "Olga", "Anastasia"];
+
+let programmers = [];
+//programmers.push( people.find(person => person.profession === "programmer") );
+
+programmers = people.filter(person => person.profession == "programmer");
+console.log(programmers);
+
+
+
+const changedPeople = people.map(person => {
+    return person.name = "Dear " + person.name;
+});
+
+console.log(people[1]);
+console.log(changedPeople[0]);
+
 
 const mouse = {
     type: "animal",
@@ -13,25 +34,36 @@ let user = {
     userName: "Anna",
     adult: undefined,
     age: 24,
+    languages: ['C++', 'Ruby', 'HTML'],
+
     showUser(top = true, bottom = true) {
         const keys = Object.keys(this);
         if (top) {
             console.log("-----------Start-------------");
         }
         keys.forEach( 
-            (key) => { console.log(`${key}: ${this[key]}`) } 
-            );
+            (key) => { console.log(`${key}: ${this[key]} `)} 
+        );
         if (bottom) {
             console.log("------------End--------------");
         }
-    }
+    },
+
+    pushLanguage(language) {
+        user.languages.push(language);
+    },
 };
 
 //createUser();
 // const bound =  user.showUser.bind(mouse);
 // bound();
+user.pushLanguage("JavaScript");
 
-user.showUser.call(mouse);
+let textToReverse = user.userName.split('');
+
+console.log(textToReverse.reverse().join(''));
+
+user.showUser();
 
 //showAllProperties();
 //showProperty( askQuestion("Choose property") );
