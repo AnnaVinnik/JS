@@ -15,15 +15,32 @@ let programmers = [];
 programmers = people.filter(person => person.profession == "programmer");
 console.log(programmers);
 
+const delay = (wait = 1000) => {
+    const promise = new Promise( (resolve, reject) => {
+        setTimeout(() => {
+            resolve();
+        }, wait);
+    });
+    return promise;
+};
 
-
-const changedPeople = people.map(person => {
-    return person.name = "Dear " + person.name;
-});
+let changedPeople = new Array;
 
 console.log(people[1]);
-console.log(changedPeople[0]);
+delay().then( () => {
+    console.log("after timeout");
+    changedPeople = people.map(person => {
+        return person.name = "Dear " + person.name;
+    });
+    console.log(changedPeople[0]);
+}); 
 
+async function asyncExample() {
+    await delay(3000);
+    console.log("I love you");
+}
+
+asyncExample();
 
 const mouse = {
     type: "animal",
