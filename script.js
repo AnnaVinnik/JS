@@ -9,6 +9,44 @@ const people = [
 
 // const people = ["Anna", "Irina", "Olga", "Anastasia"];
 
+const header = document.getElementById("header");
+console.dir(header);
+let counterClicks = 0;
+const card = document.querySelector(".card");
+
+card.onclick = () => {
+    card.style.transition = "2s";
+    if (counterClicks % 2 === 0) {
+        card.style.transform = "rotateY(180deg)";
+    } else {
+        card.style.transform = "rotateY(360deg)";
+    }
+    counterClicks++;
+   
+};
+
+let counterClicksButton = 0;
+const button = document.querySelector(".button");
+
+button.onmousedown = () => {
+    button.style.transition = "1s";
+    // if(counterClicksButton % 2 === 0) {
+    button.style.boxShadow = `inset -31px -31px 43px rgba(255, 255, 255, 0.64), 
+        inset 26px 26px 48px rgba(13, 39, 80, 0.16),
+        -23px -23px 45px #FFF, 
+        28px 28px 50px rgba(13, 39, 80, 0.16)`;
+    // } else {
+    //     button.style.boxShadow = `-23px -23px 45px #FFF, 
+    //         28px 28px 50px rgba(13, 39, 80, 0.16)`;
+    // }
+    // counterClicksButton++;
+};
+
+button.onmouseup = () => {
+    button.style.boxShadow = `-23px -23px 45px #FFF, 
+            28px 28px 50px rgba(13, 39, 80, 0.16)`;
+};
+
 let programmers = [];
 //programmers.push( people.find(person => person.profession === "programmer") );
 
