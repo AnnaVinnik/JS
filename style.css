@@ -4,21 +4,54 @@ body {
 }
 
 .main {
-    padding: 20px;
-    background-color: rgb(231, 231, 231);
+    padding: 5px;
+    /* margin: 50px 50px 350px 50px; */
+    margin-bottom: 500px;
+}
+
+.main {
     display: flex;
 }
 
-.card {
-    background-color: rgb(217, 217, 217);
-    /* border: 1px solid rgb(201, 180, 127); */
-    border-radius: 10px;
-    width: 200px;
-    height: 150px;
-    padding: 20px;
+.catalog {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 240px;
 }
 
-.button {
+.card {
+    /* border: 1px solid rgb(201, 180, 127); */
+    width: 200px;
+    /* height: 150px; */
+    padding: 2px;
+    margin: 20px;
+}
+
+.card:hover {
+    box-shadow: 0 0 15px rgb(210, 210, 210);
+}
+
+.card__img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card__name {
+    padding-top: 10px;
+    text-align: center;
+    display: block;
+    font-family: "Arial";
+    color: rgb(217, 189, 132);
+    font-size: 20px;
+}
+
+.card__price {
+    text-align: center;
+    color: rgb(217, 189, 132);
+}
+
+.buttonShadow {
     margin: 20px 30px;
     width: 250px;
     height: 250px;
@@ -29,4 +62,11 @@ body {
         28px 28px 50px rgba(13, 39, 80, 0.16);
         /* inset -10px -10px 10px rgba(174, 174, 192, 0.1), */
         /* inset 10px 10px 10px #FFF; */
+}
+
+.filters {
+    border-right: 1px solid rgb(217, 189, 132);
+    width: 200px;
+    height: 100vh;
+    position: fixed;
 }
