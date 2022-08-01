@@ -4,7 +4,6 @@ body {
 }
 
 .main {
-    padding: 5px;
     /* margin: 50px 50px 350px 50px; */
     margin-bottom: 500px;
 }
@@ -17,6 +16,23 @@ body {
     display: flex;
     flex-wrap: wrap;
     padding-left: 240px;
+}
+
+.button {
+    background-color:rgb(130, 174, 176);
+    width: 100%;
+    height: 40px;
+    display: block;
+    margin: 5px 0 10px 0;
+    border: none;
+    color: white;
+    font-family: 'PT Sans', sans-serif;
+    letter-spacing: 2px;
+    font-size: 16px;
+}
+
+.button:hover {
+    background-color: rgb(63, 95, 97);
 }
 
 .card {
@@ -69,4 +85,13 @@ body {
     width: 200px;
     height: 100vh;
     position: fixed;
+    padding: 15px;
+}
+
+.filters__heading {
+    font-family: 'PT Sans', sans-serif;
+    color: rgb(84, 83, 79);
+    letter-spacing: 2px;
+    font-weight: normal;
+    margin-bottom: 10px;
 }
