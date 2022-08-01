@@ -10,7 +10,12 @@ const products = [
 
 const catalog = document.querySelector(".catalog");
 
-addElementsOnPage();
+showAllProducts();
+
+function showAllProducts() {
+    removeElementsOnPage(".card");
+    addElementsOnPage(products);
+}
 
 function createCard(product) {
     const card = document.createElement('div');
@@ -63,7 +68,7 @@ function removeElementsOnPage(selector) {
     });
 }
 
-function addElementsOnPage() {
+function addElementsOnPage(products) {
     products.forEach ( (product) =>  {
         const cardProduct = createCard(product);
         catalog.append(cardProduct);
@@ -71,16 +76,18 @@ function addElementsOnPage() {
 }
 
 
-function filter() {
+function filterBouquet() {
     const choosenProducts = products.filter( (product) => product.type === "букет");
-    console.log(choosenProducts);
     
     removeElementsOnPage(".card");
+    addElementsOnPage(choosenProducts);
+}
 
-    choosenProducts.forEach ( (product) =>  {
-        const cardProduct = createCard(product);
-        catalog.append(cardProduct);
-    });
+function filterRose() {
+    const choosenProducts = products.filter( (product) => product.type === "розы");
+    
+    removeElementsOnPage(".card");
+    addElementsOnPage(choosenProducts);
 }
 
 
