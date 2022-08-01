@@ -15,6 +15,19 @@ const catalog = document.querySelector(".catalog");
 
 // catalog.prepend(cardProduct);
 // cardProduct.style.backgroundColor ="red";
+
+function addElementsOnPage() {
+
+}
+
+
+function removeElementsOnPage(selector) {
+    const elementsToRemove = document.querySelectorAll(selector);
+    elementsToRemove.forEach( (element) => {
+        element.remove();
+    });
+}
+
 products.forEach ( (product) =>  {
     let cardProduct = document.createElement('div');
 
@@ -41,11 +54,7 @@ function filter() {
     const choosenProducts = products.filter( (product) => product.type === "букет");
     console.log(choosenProducts);
     
-    const elementsToRemove = document.querySelectorAll(".card");
-    elementsToRemove.forEach( (element) => {
-        element.remove();
-    });
-
+    removeElementsOnPage(".card");
 
     choosenProducts.forEach ( (product) =>  {
         let cardProduct = document.createElement('div');
