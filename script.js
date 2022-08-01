@@ -75,21 +75,12 @@ function addElementsOnPage(products) {
     });
 }
 
-
-function filterBouquet() {
-    const choosenProducts = products.filter( (product) => product.type === "букет");
+function filter(type) {
+    const choosenProducts = products.filter( (product) => product.type === type);
     
     removeElementsOnPage(".card");
     addElementsOnPage(choosenProducts);
 }
-
-function filterRose() {
-    const choosenProducts = products.filter( (product) => product.type === "розы");
-    
-    removeElementsOnPage(".card");
-    addElementsOnPage(choosenProducts);
-}
-
 
 let indexesOfPropducts = [1, 3, 5, 6];
 let arr = [1, 2, 3, 4, 5];
