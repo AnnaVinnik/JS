@@ -10,6 +10,8 @@ const products = [
 
 const catalog = document.querySelector(".catalog");
 
+addElementsOnPage();
+
 function createCard(product) {
     const card = document.createElement('div');
 
@@ -61,27 +63,12 @@ function removeElementsOnPage(selector) {
     });
 }
 
-products.forEach ( (product) =>  {
-    const cardProduct = createCard(product);
-    // let cardProduct = document.createElement('div');
-
-    // cardProduct.classList = "card";
-    // cardProduct.innerHTML = `<img src=${product.img} class="card__img"></img>`;
-    
-    // let productName = document.createElement('a');
-    // productName.innerText = product.name;
-    // productName.classList = "card__name";
-    // productName.href = "#";
-
-    // let productPrice = document.createElement('p');
-    // productPrice.classList = "card__price";
-    // productPrice.innerText = `${product.price} руб.`;
-
-    // cardProduct.append(productName);
-    // cardProduct.append(productPrice);
-
-    catalog.append(cardProduct);
-});
+function addElementsOnPage() {
+    products.forEach ( (product) =>  {
+        const cardProduct = createCard(product);
+        catalog.append(cardProduct);
+    });
+}
 
 
 function filter() {
