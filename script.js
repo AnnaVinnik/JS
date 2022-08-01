@@ -82,6 +82,17 @@ function filter(type) {
     addElementsOnPage(choosenProducts);
 }
 
+//======================================================================================================================
+
+const buttonFirst = document.querySelector('#bouquet');
+buttonFirst.addEventListener('change', () => {
+    if(buttonFirst.checked) {
+        filter('букет');
+    } else {
+        showAllProducts();
+    }
+});
+
 let indexesOfPropducts = [1, 3, 5, 6];
 let arr = [1, 2, 3, 4, 5];
 
