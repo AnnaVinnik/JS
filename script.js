@@ -78,23 +78,7 @@ function filter() {
     removeElementsOnPage(".card");
 
     choosenProducts.forEach ( (product) =>  {
-        let cardProduct = document.createElement('div');
-    
-        cardProduct.classList = "card";
-        cardProduct.innerHTML = `<img src=${product.img} class="card__img"></img>`;
-        
-        let productName = document.createElement('a');
-        productName.innerText = product.name;
-        productName.classList = "card__name";
-        productName.href = "#";
-    
-        let productPrice = document.createElement('p');
-        productPrice.classList = "card__price";
-        productPrice.innerText = `${product.price} руб.`;
-    
-        cardProduct.append(productName);
-        cardProduct.append(productPrice);
-    
+        const cardProduct = createCard(product);
         catalog.append(cardProduct);
     });
 }
