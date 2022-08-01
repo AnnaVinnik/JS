@@ -10,44 +10,32 @@ const products = [
 
 const catalog = document.querySelector(".catalog");
 
-// let cardProduct = document.createElement('div');
-// cardProduct.classList = "card";
-
-// catalog.prepend(cardProduct);
-// cardProduct.style.backgroundColor ="red";
-
-function addElementsOnPage() {
-
-}
-
 function createCard(product) {
-    let card = document.createElement('div');
-
-    card.classList = "card";
-    // card.innerHTML = `<img src=${product.img} class="card__img"></img>`;
+    const card = document.createElement('div');
 
     const productImg = createImageForCard(product);
-
     const productName = createNameForCard(product);
-
-    // let productName = document.createElement('a');
-    // productName.innerText = product.name;
-    // productName.classList = "card__name";
-    // productName.href = "#";
-
-    let productPrice = document.createElement('p');
-    productPrice.classList = "card__price";
-    productPrice.innerText = `${product.price} руб.`;
+    const productPrice = createPriceForCard(product);
 
     card.append(productImg);
     card.append(productName);
     card.append(productPrice);
+    card.classList = "card";
 
     return card;
 }
 
+function createPriceForCard(product) {
+    const productPrice = document.createElement('p');
+
+    productPrice.innerText = `${product.price} руб.`;
+    productPrice.classList = "card__price";
+
+    return productPrice;
+}
+
 function createImageForCard(product) {
-    let productImg = document.createElement('img');
+    const productImg = document.createElement('img');
 
     productImg.src = product.img;
     productImg.classList = "card__img";
@@ -56,7 +44,7 @@ function createImageForCard(product) {
 }
 
 function createNameForCard(product) {
-    let productName = document.createElement('a');
+    const productName = document.createElement('a');
 
     productName.innerText = product.name;
     productName.href = product.link;
