@@ -24,9 +24,11 @@ function createCard(product) {
     let card = document.createElement('div');
 
     card.classList = "card";
-    card.innerHTML = `<img src=${product.img} class="card__img"></img>`;
+    // card.innerHTML = `<img src=${product.img} class="card__img"></img>`;
 
-    const productName = addNameInCard(product);
+    const productImg = createImageForCard(product);
+
+    const productName = createNameForCard(product);
 
     // let productName = document.createElement('a');
     // productName.innerText = product.name;
@@ -37,13 +39,23 @@ function createCard(product) {
     productPrice.classList = "card__price";
     productPrice.innerText = `${product.price} руб.`;
 
+    card.append(productImg);
     card.append(productName);
     card.append(productPrice);
 
     return card;
 }
 
-function addNameInCard(product) {
+function createImageForCard(product) {
+    let productImg = document.createElement('img');
+
+    productImg.src = product.img;
+    productImg.classList = "card__img";
+
+    return productImg;
+}
+
+function createNameForCard(product) {
     let productName = document.createElement('a');
 
     productName.innerText = product.name;
