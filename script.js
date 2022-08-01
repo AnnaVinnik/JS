@@ -1,11 +1,11 @@
 "use strict";
 
 const products = [
-    {name: "букет 1", type: "букет", price: 1000, img: "4.jpg"},
-    {name: "букет 2", type: "букет", price: 1500, img: "2.jpg"},
-    {name: "белые розы", type: "розы", price: 1000, img: "1.png"},
-    {name: "букет 3", type: "букет", price: 1200, img: "3.jpg"},
-    {name: "белые розы", type: "розы", price: 1000, img: "1.png"},
+    {name: "букет 1", type: "букет", price: 1000, img: "4.jpg", link: "#"},
+    {name: "букет 2", type: "букет", price: 1500, img: "2.jpg", link: "#"},
+    {name: "белые розы", type: "розы", price: 1000, img: "1.png", link: "#"},
+    {name: "букет 3", type: "букет", price: 1200, img: "3.jpg", link: "#"},
+    {name: "белые розы", type: "розы", price: 1000, img: "1.png", link: "#"},
 ];
 
 const catalog = document.querySelector(".catalog");
@@ -20,6 +20,39 @@ function addElementsOnPage() {
 
 }
 
+function createCard(product) {
+    let card = document.createElement('div');
+
+    card.classList = "card";
+    card.innerHTML = `<img src=${product.img} class="card__img"></img>`;
+
+    const productName = addNameInCard(product);
+
+    // let productName = document.createElement('a');
+    // productName.innerText = product.name;
+    // productName.classList = "card__name";
+    // productName.href = "#";
+
+    let productPrice = document.createElement('p');
+    productPrice.classList = "card__price";
+    productPrice.innerText = `${product.price} руб.`;
+
+    card.append(productName);
+    card.append(productPrice);
+
+    return card;
+}
+
+function addNameInCard(product) {
+    let productName = document.createElement('a');
+
+    productName.innerText = product.name;
+    productName.href = product.link;
+    productName.classList = "card__name";
+
+    return productName;
+}
+
 
 function removeElementsOnPage(selector) {
     const elementsToRemove = document.querySelectorAll(selector);
@@ -29,22 +62,23 @@ function removeElementsOnPage(selector) {
 }
 
 products.forEach ( (product) =>  {
-    let cardProduct = document.createElement('div');
+    const cardProduct = createCard(product);
+    // let cardProduct = document.createElement('div');
 
-    cardProduct.classList = "card";
-    cardProduct.innerHTML = `<img src=${product.img} class="card__img"></img>`;
+    // cardProduct.classList = "card";
+    // cardProduct.innerHTML = `<img src=${product.img} class="card__img"></img>`;
     
-    let productName = document.createElement('a');
-    productName.innerText = product.name;
-    productName.classList = "card__name";
-    productName.href = "#";
+    // let productName = document.createElement('a');
+    // productName.innerText = product.name;
+    // productName.classList = "card__name";
+    // productName.href = "#";
 
-    let productPrice = document.createElement('p');
-    productPrice.classList = "card__price";
-    productPrice.innerText = `${product.price} руб.`;
+    // let productPrice = document.createElement('p');
+    // productPrice.classList = "card__price";
+    // productPrice.innerText = `${product.price} руб.`;
 
-    cardProduct.append(productName);
-    cardProduct.append(productPrice);
+    // cardProduct.append(productName);
+    // cardProduct.append(productPrice);
 
     catalog.append(cardProduct);
 });
