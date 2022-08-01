@@ -91,6 +91,15 @@ function filterRose() {
 }
 
 
+let indexesOfPropducts = [1, 3, 5, 6];
+let arr = [1, 2, 3, 4, 5];
+
+Array.prototype.multiplyNumber = function(number = 1) {
+    return this.map(elem => elem * number);
+};
+
+console.log(indexesOfPropducts.multiplyNumber.call(arr, 1));
+
 // const people = [
 //     {name: "Anna", profession: "programmer"},
 //     {name: "Irina", profession: "accounter"},
