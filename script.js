@@ -9,12 +9,42 @@ const products = [
 ];
 
 const catalog = document.querySelector(".catalog");
+const sliderElements = document.querySelectorAll(".slider__element>img");
+let sliderCurrentElem = 0;
 
 showAllProducts();
 
 function showAllProducts() {
     removeElementsOnPage(".card");
     addElementsOnPage(products);
+}
+
+function sliderNext() {
+    sliderHideElem(sliderElements[sliderCurrentElem]);
+    countNextElement();
+    sliderShowElem(sliderElements[sliderCurrentElem]);
+}
+
+function sliderPrevious() {
+    sliderHideElem(sliderElements[sliderCurrentElem]);
+    countPreviousElement();
+    sliderShowElem(sliderElements[sliderCurrentElem]);
+}
+
+function countNextElement(){
+    return sliderCurrentElem = (sliderCurrentElem === 2) ?  0 : ++sliderCurrentElem ;
+}
+
+function countPreviousElement(){
+    return sliderCurrentElem = (sliderCurrentElem === 0) ? 2 : --sliderCurrentElem;
+}
+
+function sliderShowElem(elem) {
+    elem.style.zIndex = 10;
+}
+
+function sliderHideElem(elem) {
+    elem.style.zIndex = 0;
 }
 
 function createCard(product) {
