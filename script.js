@@ -1,5 +1,14 @@
 "use strict";
 
+const user = {
+    name: "Anna",
+    age: 24,
+    basket: 1,
+    showBasket() {
+        console.log(`Basket of ${this.name} = ${this.basket}`);
+    },
+};
+
 const products = [
     {name: "букет 1", type: "букет", price: 1000, img: "4.jpg", link: "#"},
     {name: "букет 2", type: "букет", price: 1500, img: "2.jpg", link: "#"},
