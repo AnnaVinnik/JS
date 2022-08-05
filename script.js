@@ -9,6 +9,14 @@ const user = {
     },
 };
 
+// ///////////////////////////
+
+
+
+
+
+// ///////////////////////////
+
 const products = [
     {name: "букет 1", type: "букет", price: 1000, img: "4.jpg", link: "#"},
     {name: "букет 2", type: "букет", price: 1500, img: "2.jpg", link: "#"},
@@ -139,7 +147,50 @@ Array.prototype.multiplyNumber = function(number = 1) {
     return this.map(elem => elem * number);
 };
 
-console.log(indexesOfPropducts.multiplyNumber.call(arr, 1));
+// console.log(indexesOfPropducts.multiplyNumber.call(arr, 1));
+
+function sayKi() {
+    alert("KI");
+}
+
+user.sayKi = sayKi;
+user.sayKi = () => alert("Hello");
+// user.sayKi();
+// sayKi();
+
+function makeUser() {
+    return {
+      name: "Джон",
+      ref: this
+    };
+  };
+  
+//  let madeUser = madeUser.makeUser();
+
+
+//   console.log(madeUser);
+  
+//   alert( madeUser.ref.name); 
+
+
+
+  let calculator = {
+        read() {
+            this.a = prompt("Введите первое число:", 0);
+            this.b = prompt("Введите второе число:", 0);
+        },
+        sum() {
+            return +this.a + +this.b;
+        },
+        mul() {
+            return this.a * this.b;
+        },
+  };
+  
+  calculator.read();
+  alert( calculator.sum() );
+  alert( calculator.mul() );
+
 
 // const people = [
 //     {name: "Anna", profession: "programmer"},
