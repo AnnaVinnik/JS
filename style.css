@@ -70,21 +70,25 @@ body {
 }
 
 .card {
-    /* border: 1px solid rgb(201, 180, 127); */
+    /* border: 0 solid rgb(201, 180, 127); */
     width: 200px;
-    /* height: 150px; */
-    padding: 2px;
-    margin: 20px;
+    height: 350px;
+    padding: 5px;
+    margin-left: 20px;
+    /* box-sizing: border-box; */
 }
 
 .card:hover {
-    box-shadow: 0 0 15px rgb(210, 210, 210);
+    /* box-shadow: 0 0 15px rgb(210, 210, 210); */
+    border: 1px solid rgb(231, 201, 49);
+    padding: 4px;
 }
 
 .card__img {
     width: 200px;
     height: 200px;
     object-fit: cover;
+    margin: 0 auto;
 }
 
 .card__name {
@@ -94,11 +98,14 @@ body {
     font-family: "Arial";
     color: rgb(217, 189, 132);
     font-size: 20px;
+    text-decoration: none;
+    text-transform: capitalize;
 }
 
 .card__price {
     text-align: center;
     color: rgb(217, 189, 132);
+    margin-top: 5px;
 }
 
 .buttonShadow {
