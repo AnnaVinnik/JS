@@ -19,6 +19,7 @@ const products = [
 
 const catalog = document.querySelector(".catalog");
 const sliderElements = document.querySelectorAll(".slider__element>img");
+const sliderDots = document.querySelectorAll(".slider__dot");
 let sliderCurrentElem = 0;
 let sliderInterval;
 
@@ -41,15 +42,19 @@ function showAllProducts() {
 
 function sliderNext() {
     sliderHideElem(sliderElements[sliderCurrentElem]);
+    sliderDots[sliderCurrentElem].classList.remove("slider__dot_current");
     countNextElement();
     sliderShowElem(sliderElements[sliderCurrentElem]);
+    sliderDots[sliderCurrentElem].classList.add("slider__dot_current");
     restartSlider();
 }
 
 function sliderPrevious() {
     sliderHideElem(sliderElements[sliderCurrentElem]);
+    sliderDots[sliderCurrentElem].classList.remove("slider__dot_current");
     countPreviousElement();
     sliderShowElem(sliderElements[sliderCurrentElem]);
+    sliderDots[sliderCurrentElem].classList.add("slider__dot_current");
     restartSlider();
 }
 

@@ -13,13 +13,17 @@
     <body>
         <header id="header" class="header"></header>
         <section class="slider">
-            <div class="slider__element"><img src="2.jpg" alt=""></div>
+            <div class="slider__element"><img style="z-index: 10" src="2.jpg" alt=""></div>
             <div class="slider__element"><img src="3.jpg" alt=""></div>
             <div class="slider__element"><img src="4.jpg" alt=""></div>
             <img id="slider__next" onclick="sliderNext()" src="next.svg" alt="next">
             <img id="slider__previous" onclick="sliderPrevious()" src="next.svg" alt="next">
 
-            <!-- <button id="slider__previous" onclick="sliderPrevious()">previous</button> -->
+            <div class="slider__dots">
+                <div class="slider__dot slider__dot_current">.</div>
+                <div class="slider__dot">.</div>
+                <div class="slider__dot">.</div>
+            </div>
         </section>
         <section class="main">
             <aside class="filters">
