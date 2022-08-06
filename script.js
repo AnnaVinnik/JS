@@ -10,11 +10,11 @@ const user = {
 };
 
 const products = [
-    {name: "букет 1", type: "букет", price: 1000, img: "4.jpg", link: "#", description: "Букет состоящий из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
-    {name: "букет 2", type: "букет", price: 1500, img: "2.jpg", link: "#"},
-    {name: "белые розы", type: "розы", price: 1000, img: "1.png", link: "#"},
-    {name: "букет 3", type: "букет", price: 1200, img: "3.jpg", link: "#"},
-    {name: "белые розы", type: "розы", price: 1000, img: "1.png", link: "#"},
+    {name: "букет 1", type: "букет", price: 1000, img: "4.jpg", link: "#", description: "Букет состоящий из розовых цветов. Поможет создать романтическую обстановку на любой встрече"},
+    {name: "букет 2", type: "букет", price: 1500, img: "2.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
+    {name: "белые розы", type: "розы", price: 1000, img: "1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
+    {name: "букет 3", type: "букет", price: 1200, img: "3.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
+    {name: "белые розы", type: "розы", price: 1000, img: "1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
 ];
 
 const catalog = document.querySelector(".catalog");
@@ -26,7 +26,7 @@ showAllProducts();
 startSlider();
 
 function startSlider() {
-     sliderInterval = setInterval(sliderNext, 4000);
+     sliderInterval = setInterval(sliderNext, 5000);
 }
 
 function restartSlider() {
@@ -75,13 +75,44 @@ function createCard(product) {
     const productImg = createImageForCard(product);
     const productName = createNameForCard(product);
     const productPrice = createPriceForCard(product);
+    const productDescription = createDescriptionForCard(product);
 
     card.append(productImg);
     card.append(productName);
     card.append(productPrice);
+    card.append(productDescription);
     card.classList = "card";
 
     return card;
+}
+
+function createDescriptionForCard(product) {
+    const productDescription = document.createElement('div');
+
+    let shortDescription = product.description.slice(0, 40);
+    shortDescription += "...";
+
+    productDescription.innerText = shortDescription;
+    productDescription.classList = "card__description";
+    productDescription.addEventListener('click', () => showDescription(productDescription, product));
+
+    return productDescription;
+}
+
+function showDescription(elem, product) {
+    if(elem.classList.contains("showed")) {
+        let shortDescription = product.description.slice(0, 40);
+        shortDescription += "...";
+        elem.innerText = shortDescription;
+        elem.classList.remove("showed");
+    } else {
+        elem.innerText = product.description;
+        elem.classList.add("showed");
+    }
+}
+
+function hideDescription() {
+    // this.classList = "hiden";
 }
 
 function createPriceForCard(product) {
