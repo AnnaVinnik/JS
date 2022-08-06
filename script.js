@@ -9,14 +9,6 @@ const user = {
     },
 };
 
-// ///////////////////////////
-
-
-
-
-
-// ///////////////////////////
-
 const products = [
     {name: "букет 1", type: "букет", price: 1000, img: "4.jpg", link: "#"},
     {name: "букет 2", type: "букет", price: 1500, img: "2.jpg", link: "#"},
@@ -131,6 +123,24 @@ function filter(type) {
 
 //======================================================================================================================
 
+let ladder = {
+    step: 0,
+    up() {
+      this.step++;
+      return this;
+    },
+    down() {
+      this.step--;
+      return this;
+    },
+    showStep: function() { // показывает текущую ступеньку
+      console.log(`Current step:` + this.step );
+      return this;
+    }
+  };
+
+ladder.up().up().down().showStep().up().showStep(); // 1
+
 const buttonFirst = document.querySelector('#bouquet');
 buttonFirst.addEventListener('change', () => {
     if(buttonFirst.checked) {
@@ -153,8 +163,8 @@ function sayKi() {
     alert("KI");
 }
 
-user.sayKi = sayKi;
-user.sayKi = () => alert("Hello");
+// user.sayKi = sayKi;
+// user.sayKi = () => alert("Hello");
 // user.sayKi();
 // sayKi();
 
@@ -187,9 +197,9 @@ function makeUser() {
         },
   };
   
-  calculator.read();
-  alert( calculator.sum() );
-  alert( calculator.mul() );
+//   calculator.read();
+//   alert( calculator.sum() );
+//   alert( calculator.mul() );
 
 
 // const people = [
