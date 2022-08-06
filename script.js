@@ -10,7 +10,7 @@ const user = {
 };
 
 const products = [
-    {name: "букет 1", type: "букет", price: 1000, img: "4.jpg", link: "#"},
+    {name: "букет 1", type: "букет", price: 1000, img: "4.jpg", link: "#", description: "Букет состоящий из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
     {name: "букет 2", type: "букет", price: 1500, img: "2.jpg", link: "#"},
     {name: "белые розы", type: "розы", price: 1000, img: "1.png", link: "#"},
     {name: "букет 3", type: "букет", price: 1200, img: "3.jpg", link: "#"},
@@ -20,8 +20,19 @@ const products = [
 const catalog = document.querySelector(".catalog");
 const sliderElements = document.querySelectorAll(".slider__element>img");
 let sliderCurrentElem = 0;
+let sliderInterval;
 
 showAllProducts();
+startSlider();
+
+function startSlider() {
+     sliderInterval = setInterval(sliderNext, 4000);
+}
+
+function restartSlider() {
+    clearInterval(sliderInterval);
+    startSlider();
+}
 
 function showAllProducts() {
     removeElementsOnPage(".card");
@@ -32,12 +43,14 @@ function sliderNext() {
     sliderHideElem(sliderElements[sliderCurrentElem]);
     countNextElement();
     sliderShowElem(sliderElements[sliderCurrentElem]);
+    restartSlider();
 }
 
 function sliderPrevious() {
     sliderHideElem(sliderElements[sliderCurrentElem]);
     countPreviousElement();
     sliderShowElem(sliderElements[sliderCurrentElem]);
+    restartSlider();
 }
 
 function countNextElement(){
