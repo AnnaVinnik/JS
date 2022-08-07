@@ -52,7 +52,7 @@ function createSlider() {
     addElementsInSlider(slider);
     addArrowsSlider(slider);
     slider.append(createDotsSlider());
-    
+
     header.after(slider);
 
     sliderElements = document.querySelectorAll(".slider__element>img");
@@ -98,7 +98,7 @@ function restartSlider() {
 }
 
 function showAllProducts() {
-    removeElementsOnPage(".card");
+    clearAreaOnPage(".catalog");
     addElementsOnPage(products);
 }
 
@@ -211,11 +211,16 @@ function createNameForCard(product) {
 }
 
 
-function removeElementsOnPage(selector) {
-    const elementsToRemove = document.querySelectorAll(selector);
-    elementsToRemove.forEach( (element) => {
-        element.remove();
-    });
+// function removeElementsOnPage(selector) {
+//     const elementsToRemove = document.querySelectorAll(selector);
+//     elementsToRemove.forEach( (element) => {
+//         element.remove();
+//     });
+// }
+
+function clearAreaOnPage(selector) {
+    const areaToClear = document.querySelector(selector); 
+    areaToClear.innerHTML = "";
 }
 
 function addElementsOnPage(products) {
@@ -228,7 +233,7 @@ function addElementsOnPage(products) {
 function filter(type) {
     const choosenProducts = products.filter( (product) => product.type === type);
     
-    removeElementsOnPage(".card");
+    clearAreaOnPage(".catalog");
     addElementsOnPage(choosenProducts);
 }
 
