@@ -178,10 +178,6 @@ function showDescription(elem, product) {
     }
 }
 
-function hideDescription() {
-    // this.classList = "hiden";
-}
-
 function createPriceForCard(product) {
     const productPrice = document.createElement('p');
 
