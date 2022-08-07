@@ -9,25 +9,74 @@ const user = {
     },
 };
 
+const sliderSources = [
+    {src: "img/2.jpg", alt: "букет #2"},
+    {src: "img/3.jpg", alt: "букет #3"},
+    {src: "img/4.jpg", alt: "букет #1"},
+    {src: "img/5.jpg", alt: "букет #1"},
+
+];
+
 const products = [
-    {name: "букет 1", type: "букет", price: 1000, img: "img/4.jpg", link: "#", description: "Букет состоящий из розовых цветов. Поможет создать романтическую обстановку на любой встрече"},
-    {name: "букет 2", type: "букет", price: 1500, img: "img/2.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
+    {name: "букет #1", type: "букет", price: 1000, img: "img/4.jpg", link: "#", description: "Букет состоящий из розовых цветов. Поможет создать романтическую обстановку на любой встрече"},
+    {name: "букет #2", type: "букет", price: 1500, img: "img/2.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
     {name: "белые розы", type: "розы", price: 1000, img: "img/1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
-    {name: "букет 3", type: "букет", price: 1200, img: "img/3.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
+    {name: "букет #3", type: "букет", price: 1200, img: "img/3.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
     {name: "белые розы", type: "розы", price: 1000, img: "img/1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
 ];
 
 const catalog = document.querySelector(".catalog");
-const sliderElements = document.querySelectorAll(".slider__element>img");
-const sliderDots = document.querySelectorAll(".slider__dot");
+const header = document.querySelector(".header");
+// const sliderElements = document.querySelectorAll(".slider__element>img");
+let sliderElements;
+// const sliderDots = document.querySelectorAll(".slider__dot");
+let sliderDots;
 let sliderCurrentElem = 0;
 let sliderInterval;
 
-showAllProducts();
+createSlider();
 startSlider();
+showAllProducts();
+
+function createSlide(elem) {
+    return `<div class="slider__element">
+        <img src="${elem.src}" alt=""></img> 
+        </div>`;
+}
+
+function createSlider() {
+    const slider = document.createElement('section');
+    //let sliderCreated;
+    let sliderDotsWrapper = document.createElement('div');
+    const next = document.createElement('img');
+    const prev = document.createElement('img');
+    sliderDotsWrapper.classList.add("slider__dots");
+    slider.classList = "slider";
+
+    sliderSources.forEach((elem) => {
+       slider.insertAdjacentHTML('beforeend',createSlide(elem));
+    });
+    //slider.innerHTML(sliderCreated);
+   
+    for (let counter = 0; counter < sliderSources.length; counter++ ){
+        sliderDotsWrapper.insertAdjacentHTML('beforeend', "<div class='slider__dot'>.</div>");
+    } 
+    
+
+    header.after(slider);
+    slider.insertAdjacentHTML('beforeend', '<img id="slider__next" onclick="sliderNext()" src="img/next.svg" alt="next">');
+    slider.insertAdjacentHTML('beforeend', '<img id="slider__previous" onclick="sliderPrevious()" src="img/next.svg" alt="previous">');
+    slider.append(sliderDotsWrapper);
+
+    sliderElements = document.querySelectorAll(".slider__element>img");
+    sliderElements[0].style.zIndex = 10;
+
+    sliderDots = document.querySelectorAll(".slider__dot");
+    sliderDots[0].classList.add("slider__dot_current");
+}
 
 function startSlider() {
-     sliderInterval = setInterval(sliderNext, 5000);
+     sliderInterval = setInterval(sliderNext, 3000);
 }
 
 function restartSlider() {
@@ -59,11 +108,11 @@ function sliderPrevious() {
 }
 
 function countNextElement(){
-    return sliderCurrentElem = (sliderCurrentElem === 2) ?  0 : ++sliderCurrentElem ;
+    return sliderCurrentElem = (sliderCurrentElem === sliderSources.length - 1) ?  0 : ++sliderCurrentElem ;
 }
 
 function countPreviousElement(){
-    return sliderCurrentElem = (sliderCurrentElem === 0) ? 2 : --sliderCurrentElem;
+    return sliderCurrentElem = (sliderCurrentElem === 0) ? sliderSources.length - 1 : --sliderCurrentElem;
 }
 
 function sliderShowElem(elem) {
