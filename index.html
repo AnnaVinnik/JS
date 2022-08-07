@@ -7,18 +7,33 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/style.css">
         <title>JS</title>
     </head>
     <body>
         <header id="header" class="header"></header>
         <section class="slider">
-            <div class="slider__element"><img style="z-index: 10" src="2.jpg" alt=""></div>
-            <div class="slider__element"><img src="3.jpg" alt=""></div>
-            <div class="slider__element"><img src="4.jpg" alt=""></div>
-            <img id="slider__next" onclick="sliderNext()" src="next.svg" alt="next">
-            <img id="slider__previous" onclick="sliderPrevious()" src="next.svg" alt="next">
-
+            <div class="slider__element">
+                <img style="z-index: 10" src="img/2.jpg" alt="">
+            </div>
+            <div class="slider__element">
+                <img src="img/3.jpg" alt="">
+            </div>
+            <div class="slider__element">
+                <img src="img/4.jpg" alt="">
+            </div>
+            <img
+                id="slider__next"
+                onclick="sliderNext()"
+                src="img/next.svg"
+                alt="next"
+            >
+            <img
+                id="slider__previous"
+                onclick="sliderPrevious()"
+                src="img/next.svg"
+                alt="next"
+            >
             <div class="slider__dots">
                 <div class="slider__dot slider__dot_current">.</div>
                 <div class="slider__dot">.</div>
@@ -31,7 +46,6 @@
                 <button class="button" onclick="filter('букет')">Букеты</button>
                 <button class="button" onclick="filter('розы')">Розы</button>
                 <button class="button" onclick="showAllProducts()">Показать все</button>
-
                 <fieldset>
                     <div>
                         <input type="checkbox" name="bouquet" id="bouquet">
@@ -49,12 +63,12 @@
             I'm card
         </div>
         <button class="buttonShadow">Im button </button> -->
-        <script src="script.js"></script>
+        <script src="scripts/script.js"></script>
     </body>
     <footer>
         <a href="https://ru.freepik.com/photos/flower" target="_blank">Flower фото создан(а) kbza - ru.freepik.com</a>
-        <a href='https://ru.freepik.com/photos/flower'>Flower фото создан(а) freepik - ru.freepik.com</a>
-        <a href='https://ru.freepik.com/photos/flower'>Flower фото создан(а) wirestock - ru.freepik.com</a>
+        <a href="https://ru.freepik.com/photos/flower">Flower фото создан(а) freepik - ru.freepik.com</a>
+        <a href="https://ru.freepik.com/photos/flower">Flower фото создан(а) wirestock - ru.freepik.com</a>
         <a href="https://www.flaticon.com/free-icons/next" title="next icons">Next icons created by Freepik - Flaticon</a>
     </footer>
 </html>
