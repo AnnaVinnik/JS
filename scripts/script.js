@@ -46,27 +46,14 @@ function createSlide(elem) {
 
 function createSlider() {
     const slider = document.createElement('section');
-    //let sliderCreated;
-    let sliderDotsWrapper = document.createElement('div');
-    const next = document.createElement('img');
-    const prev = document.createElement('img');
-    sliderDotsWrapper.classList.add("slider__dots");
+
     slider.classList = "slider";
 
-    sliderSources.forEach((elem) => {
-       slider.insertAdjacentHTML('beforeend',createSlide(elem));
-    });
-    //slider.innerHTML(sliderCreated);
-   
-    for (let counter = 0; counter < sliderSources.length; counter++ ){
-        sliderDotsWrapper.insertAdjacentHTML('beforeend', "<div class='slider__dot'>.</div>");
-    } 
+    addElementsInSlider(slider);
+    addArrowsSlider(slider);
+    slider.append(createDotsSlider());
     
-
     header.after(slider);
-    slider.insertAdjacentHTML('beforeend', '<img id="slider__next" onclick="sliderNext()" src="img/next.svg" alt="next">');
-    slider.insertAdjacentHTML('beforeend', '<img id="slider__previous" onclick="sliderPrevious()" src="img/next.svg" alt="previous">');
-    slider.append(sliderDotsWrapper);
 
     sliderElements = document.querySelectorAll(".slider__element>img");
     sliderElements[0].style.zIndex = 10;
@@ -75,8 +62,34 @@ function createSlider() {
     sliderDots[0].classList.add("slider__dot_current");
 }
 
+function createDotsSlider() {
+    let sliderDotsWrapper = document.createElement('div');
+    sliderDotsWrapper.classList.add("slider__dots");
+    
+    for (let counter = 0; counter < sliderSources.length; counter++ ){
+        addDotSlider(sliderDotsWrapper);
+    } 
+
+    return sliderDotsWrapper;
+}
+
+function addDotSlider(slider) {
+    slider.insertAdjacentHTML('beforeend', "<div class='slider__dot'>.</div>");
+}
+
+function addElementsInSlider(slider) {
+    sliderSources.forEach((elem) => {
+        slider.insertAdjacentHTML('beforeend', createSlide(elem));
+     });
+}
+
+function addArrowsSlider(slider) {
+    slider.insertAdjacentHTML('beforeend', '<img id="slider__next" onclick="sliderNext()" src="img/next.svg" alt="next">');
+    slider.insertAdjacentHTML('beforeend', '<img id="slider__previous" onclick="sliderPrevious()" src="img/next.svg" alt="previous">');
+}
+
 function startSlider() {
-     sliderInterval = setInterval(sliderNext, 3000);
+     sliderInterval = setInterval(sliderNext, 5000);
 }
 
 function restartSlider() {
