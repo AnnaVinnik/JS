@@ -20,11 +20,6 @@ const sliderSources = [
 const catalog = {
     linkOnPage: document.querySelector(".catalog"),
 
-    showAllProducts() {
-        this.clearAreaOnPage(".catalog");
-        addElementsOnPage(products);
-    },
-
     clearAreaOnPage(selector) {
         const areaToClear = document.querySelector(selector); 
         areaToClear.innerHTML = "";
@@ -73,7 +68,7 @@ const products = {
         linkOnArea.append(card);
 
     },
-    
+
     swapDescription(elem, product) {
         if(elem.classList.contains("showed")) {
             let shortDescription = product.description.slice(0, 40);
@@ -87,22 +82,22 @@ const products = {
         elem.classList.add("showed");
     },
 
-    showAll(linkOnArea) {
-        this.content.forEach( (product) => {
+    showProducts(products = this.content, linkOnArea = catalog.linkOnPage) {
+        catalog.clearAreaOnPage(".catalog");
+        products.forEach( (product) => {
             this.createCardOnPage(product, linkOnArea);
         });
     },
+
+    showFiltered(type) {
+        const filteredProducts = products.content.filter( (product) => {
+            return product.type === type;
+        });
+        this.showProducts(filteredProducts, catalog.linkOnPage);
+    },
 };
 
-// const products = [
-//     {name: "букет #1", type: "букет", price: 1000, img: "img/4.jpg", link: "#", description: "Букет состоящий из розовых цветов. Поможет создать романтическую обстановку на любой встрече"},
-//     {name: "букет #2", type: "букет", price: 1500, img: "img/2.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
-//     {name: "белые розы", type: "розы", price: 1000, img: "img/1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
-//     {name: "букет #3", type: "букет", price: 1200, img: "img/3.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
-//     {name: "белые розы", type: "розы", price: 1000, img: "img/1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
-// ];
 
-// const catalog = document.querySelector(".catalog");
 const header = document.querySelector(".header");
 // const sliderElements = document.querySelectorAll(".slider__element>img");
 let sliderElements;
@@ -113,8 +108,7 @@ let sliderInterval;
 
 createSlider();
 startSlider();
-// catalog.showAllProducts();
-products.showAll(catalog.linkOnPage);
+products.showProducts();
 
 function createSlide(elem) {
     return `<div class="slider__element">
@@ -175,11 +169,6 @@ function restartSlider() {
     startSlider();
 }
 
-// function showAllProducts() {
-//     clearAreaOnPage(".catalog");
-//     addElementsOnPage(products);
-// }
-
 function sliderNext() {
     sliderHideElem(sliderElements[sliderCurrentElem]);
     sliderDots[sliderCurrentElem].classList.remove("slider__dot_current");
@@ -214,96 +203,6 @@ function sliderHideElem(elem) {
     elem.style.zIndex = 0;
 }
 
-function createCard(product) {
-    const card = document.createElement('div');
-
-    const productImg = createImageForCard(product);
-    const productName = createNameForCard(product);
-    const productPrice = createPriceForCard(product);
-    const productDescription = createDescriptionForCard(product);
-
-    card.append(productImg);
-    card.append(productName);
-    card.append(productPrice);
-    card.append(productDescription);
-    card.classList = "card";
-
-    return card;
-}
-
-function createDescriptionForCard(product) {
-    const productDescription = document.createElement('div');
-
-    let shortDescription = product.description.slice(0, 40);
-    shortDescription += "...";
-
-    productDescription.innerText = shortDescription;
-    productDescription.classList = "card__description";
-    productDescription.addEventListener('click', () => showDescription(productDescription, product));
-
-    return productDescription;
-}
-
-function showDescription(elem, product) {
-    if(elem.classList.contains("showed")) {
-        let shortDescription = product.description.slice(0, 40);
-        shortDescription += "...";
-        elem.innerText = shortDescription;
-        elem.classList.remove("showed");
-    } else {
-        elem.innerText = product.description;
-        elem.classList.add("showed");
-    }
-}
-
-function createPriceForCard(product) {
-    const productPrice = document.createElement('p');
-
-    productPrice.innerText = `${product.price} руб.`;
-    productPrice.classList = "card__price";
-
-    return productPrice;
-}
-
-function createImageForCard(product) {
-    const productImg = document.createElement('img');
-
-    productImg.src = product.img;
-    productImg.classList = "card__img";
-
-    return productImg;
-}
-
-function createNameForCard(product) {
-    const productName = document.createElement('a');
-
-    productName.innerText = product.name;
-    productName.href = product.link;
-    productName.classList = "card__name";
-
-    return productName;
-}
-
-
-// function removeElementsOnPage(selector) {
-//     const elementsToRemove = document.querySelectorAll(selector);
-//     elementsToRemove.forEach( (element) => {
-//         element.remove();
-//     });
-// }
-
-// function clearAreaOnPage(selector) {
-//     const areaToClear = document.querySelector(selector); 
-//     areaToClear.innerHTML = "";
-// }
-
-function addElementsOnPage(products) {
-    products.forEach ( (product) =>  {
-        const cardProduct = createCard(product);
-        catalog.linkOnPage.append(cardProduct);
-    });
-}
-
 function filter(type) {
     const choosenProducts = products.filter( (product) => product.type === type);
     
@@ -334,9 +233,9 @@ ladder.up().up().down().showStep().up().showStep(); // 1
 const buttonFirst = document.querySelector('#bouquet');
 buttonFirst.addEventListener('change', () => {
     if(buttonFirst.checked) {
-        filter('букет');
+        products.showFiltered('букет');
     } else {
-        catalog.showAllProducts();
+        products.showProducts(products.content, catalog.linkOnPage);
     }
 });
 
