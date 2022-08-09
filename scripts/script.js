@@ -3,9 +3,22 @@
 const user = {
     name: "Anna",
     age: 24,
-    basket: 1,
-    showBasket() {
-        console.log(`Basket of ${this.name} = ${this.basket}`);
+    basket: {
+        content: [
+            {id: 1, count: 1},
+            {id: 2, count: 1},
+        ],
+        add(product) {
+            let index = this.content.findIndex(item => item.id === product.id);
+            if (index != -1) {
+                this.content[index].count++;
+                return;
+            }
+            this.content.push({id: product.id, count: 1});
+        },
+        // showBasket() {
+        //     console.log(`Basket of ${user.name} = ${this.content[0].id}, count = ${this.content.count}`);
+        // },
     },
 };
 
@@ -24,15 +37,15 @@ const catalog = {
         const areaToClear = document.querySelector(selector); 
         areaToClear.innerHTML = "";
     },
-};
+}; 
 
 const products = {
     content: [
-        {name: "букет #1", type: "букет", price: 1000, img: "img/4.jpg", link: "#", description: "Букет состоящий из розовых цветов. Поможет создать романтическую обстановку на любой встрече"},
-        {name: "букет #2", type: "букет", price: 1500, img: "img/2.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
-        {name: "белые розы", type: "розы", price: 1000, img: "img/1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
-        {name: "букет #3", type: "букет", price: 1200, img: "img/3.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
-        {name: "белые розы", type: "розы", price: 1000, img: "img/1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
+        {id: 1, name: "букет #1", type: "букет", price: 1000, img: "img/4.jpg", link: "#", description: "Букет состоящий из розовых цветов. Поможет создать романтическую обстановку на любой встрече"},
+        {id: 2, name: "букет #2", type: "букет", price: 1500, img: "img/2.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
+        {id: 3, name: "белые розы", type: "розы", price: 1000, img: "img/1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
+        {id: 4, name: "букет #3", type: "букет", price: 1200, img: "img/3.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
+        {id: 5, name: "белые розы", type: "розы", price: 1000, img: "img/1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
     ],
 
     createCardOnPage(product, linkOnArea) {
@@ -41,6 +54,7 @@ const products = {
         const price = document.createElement('p');
         const name = document.createElement('a');
         const description = document.createElement('div');
+        const buttonToBuy = document.createElement('button');
 
         card.classList = "card";
 
@@ -60,10 +74,15 @@ const products = {
         description.classList = "card__description";
         description.addEventListener('click', () => products.swapDescription(description, product));
 
+        buttonToBuy.innerText = "Купить";
+        buttonToBuy.classList.add("button");
+        buttonToBuy.addEventListener('click', () => user.basket.add(product) );
+
         card.insertAdjacentElement('afterbegin', img);
         card.insertAdjacentElement('beforeend', name);
         card.insertAdjacentElement('beforeend', price);
         card.insertAdjacentElement('beforeend', description);
+        card.insertAdjacentElement('beforeend', buttonToBuy);
 
         linkOnArea.append(card);
 
