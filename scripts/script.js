@@ -4,17 +4,43 @@ const user = {
     name: "Anna",
     age: 24,
     basket: {
+        linkOnPage: document.querySelector(".inBasket"),
         content: [
-            {id: 1, count: 1},
-            {id: 2, count: 1},
+            // {id: 1, count: 1},
+            // {id: 2, count: 1},
         ],
         add(product) {
             let index = this.content.findIndex(item => item.id === product.id);
             if (index != -1) {
                 this.content[index].count++;
+                this.showOnIcon();
                 return;
             }
             this.content.push({id: product.id, count: 1});
+            this.showOnIcon();
+        },
+        showOnIcon() {
+            this.linkOnPage.innerText = this.content.length;
+        },
+        showBasket(){
+            // console.log(`Basket of ${user.name} = ${this.content[0].id}, count = ${this.content.count}`);
+            const basketWrapper = document.createElement('div');
+            const basketContent = document.createElement('section');
+
+            basketContent.classList.add("basket__content");
+            basketWrapper.classList.add("basket__wrapper");
+
+            basketWrapper.addEventListener('click', () => {
+                basketContent.style.display = "none";
+                basketWrapper.style.display = "none";
+            });
+
+            this.content.forEach((elem) => {
+                basketContent.insertAdjacentHTML('beforeend', `Товар: ${products.content.find((item) => item.id === elem.id).name},  количество: ${elem.count}<br>`)
+            });
+
+            basketWrapper.append(basketContent);
+            header.after(basketWrapper);
         },
         // showBasket() {
         //     console.log(`Basket of ${user.name} = ${this.content[0].id}, count = ${this.content.count}`);
@@ -136,6 +162,7 @@ function createSlide(elem) {
 }
 
 function createSlider() {
+    const sliderWrapper = document.querySelector(".slider__wrapper");
     const slider = document.createElement('section');
 
     slider.classList = "slider";
@@ -144,7 +171,7 @@ function createSlider() {
     addArrowsSlider(slider);
     slider.append(createDotsSlider());
 
-    header.after(slider);
+    sliderWrapper.append(slider);
 
     sliderElements = document.querySelectorAll(".slider__element>img");
     sliderElements[0].style.zIndex = 10;
@@ -176,6 +203,8 @@ function addElementsInSlider(slider) {
 
 function addArrowsSlider(slider) {
     slider.insertAdjacentHTML('beforeend', '<img id="slider__next" onclick="sliderNext()" src="img/next.svg" alt="next">');
+    // slider.insertAdjacentHTML('beforeend', '<svg xmlns="http://www.w3.org/2000/svg" xmlns:se="http://svg-edit.googlecode.com" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="777" height="480">                                    <title>my vector image</title>                                    <!-- Created with Vector Paint - http://www.vectorpaint.yaks.com/ https://chrome.google.com/webstore/detail/hnbpdiengicdefcjecjbnjnoifekhgdo -->                                    <rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="#FFFFFF" stroke="none"/>                                <g id="slider__next"  class="currentLayer" style=""><title>Layer 1</title><path fill="#ffffff" fill-opacity="1" stroke="#222222" stroke-opacity="1" stroke-width="9" stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="butt" stroke-dashoffset="" fill-rule="nonzero" opacity="1" marker-start="" marker-mid="" marker-end="" d="M300.76124800871514,263.6042391121738 C281.2105842835298,181.8736996068101 204.6927700128887,137.96819755878838 283.72833789173933,116.91651432060911 C362.7639057705901,95.86481133213302 661.002939636295,156.4969778979452 661.002939636295,194.93917262621767 C661.002939636295,233.38136735449035 443.6011030213182,386.82138282889946 348.4069926274917,408.46555521744506 C253.212882233665,430.1097276059906 320.3119117339006,345.3347786175375 300.76124800871514,263.6042391121738 z" id="svg_17" class="" transform="rotate(14.659220695495605 454.83297729492136,262.24230957031256) "/></g></svg>');
+
     slider.insertAdjacentHTML('beforeend', '<img id="slider__previous" onclick="sliderPrevious()" src="img/next.svg" alt="previous">');
 }
 
