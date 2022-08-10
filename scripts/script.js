@@ -9,15 +9,19 @@ const user = {
             // {id: 1, count: 1},
             // {id: 2, count: 1},
         ],
-        add(product) {
+        add(product, button = null) {
             let index = this.content.findIndex(item => item.id === product.id);
             if (index != -1) {
                 this.content[index].count++;
                 this.showOnIcon();
+                button.innerHTML = `<div>В корзине <br> 
+                     ${this.content[index].count}
+                </div>`;
                 return;
             }
             this.content.push({id: product.id, count: 1});
             this.showOnIcon();
+            button.innerHTML = `<div>В корзине <br> ${this.content.find((elem) => product.id === elem.id).count}</div>`;
         },
         showOnIcon() {
             this.linkOnPage.innerText = this.content.length;
@@ -102,7 +106,7 @@ const products = {
 
         buttonToBuy.innerText = "Купить";
         buttonToBuy.classList.add("button");
-        buttonToBuy.addEventListener('click', () => user.basket.add(product) );
+        buttonToBuy.addEventListener('click', () => user.basket.add(product, buttonToBuy) );
 
         card.insertAdjacentElement('afterbegin', img);
         card.insertAdjacentElement('beforeend', name);

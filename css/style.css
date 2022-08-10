@@ -210,6 +210,12 @@ body {
     cursor: pointer;
 }
 
+.buttonBuyCounter {
+    z-index: 100;
+    width: 40px;
+    margin-top: 40px;
+}
+
 .buttonShadow {
     margin: 20px 30px;
     width: 250px;
