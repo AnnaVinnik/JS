@@ -9,19 +9,40 @@ const user = {
             // {id: 1, count: 1},
             // {id: 2, count: 1},
         ],
-        add(product, button = null) {
+        add(product, button) {
             let index = this.content.findIndex(item => item.id === product.id);
             if (index != -1) {
                 this.content[index].count++;
-                this.showOnIcon();
-                button.innerHTML = `<div>В корзине <br> 
-                     ${this.content[index].count}
-                </div>`;
+                // this.showOnIcon();
+                
+                button.innerHTML = `В корзине <br> 
+                    ${this.content[index].count}
+                    <button id="buttonPlus" class="button__counter">+</button>`;
+
+                let buttonPlus = document.querySelector("#buttonPlus");
+                buttonPlus.onclick = () => {
+                    user.basket.add(product, button);
+                };
+            
+                // let buttonPlus = document.querySelector("#buttonPlus");
+                // buttonPlus.onclick = "alert('click')";
                 return;
             }
             this.content.push({id: product.id, count: 1});
             this.showOnIcon();
-            button.innerHTML = `<div>В корзине <br> ${this.content.find((elem) => product.id === elem.id).count}</div>`;
+            let newButton = document.createElement('div');
+            newButton.classList.add("button");
+            newButton.innerHTML = `В корзине <br> 
+                ${this.content.find(item => item.id === product.id).count}
+                <button id="buttonPlus" class="button__counter">+</button>`;
+
+            button.after(newButton);
+            button.remove();
+            
+            let buttonPlus = document.querySelector("#buttonPlus");
+            buttonPlus.onclick = () => {
+                user.basket.add(product, newButton);
+            };
         },
         showOnIcon() {
             this.linkOnPage.innerText = this.content.length;
