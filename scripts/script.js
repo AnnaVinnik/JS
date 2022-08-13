@@ -24,8 +24,6 @@ const user = {
                     user.basket.add(product, button);
                 };
             
-                // let buttonPlus = document.querySelector("#buttonPlus");
-                // buttonPlus.onclick = "alert('click')";
                 return;
             }
             this.content.push({id: product.id, count: 1});

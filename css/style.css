@@ -190,7 +190,7 @@ body {
 .card {
     /* border: 0 solid rgb(201, 180, 127); */
     width: 200px;
-    height: 370px;
+    /* height: 370px; */
     padding: 5px;
     margin-left: 20px;
     /* box-sizing: border-box; */
