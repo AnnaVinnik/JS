@@ -1,9 +1,60 @@
 "use strict";
 
+function Menu(name) {
+    this.link = "#";
+    this.isMain = false;
+    this.name = name;
+    // alert(new.target);
+}
+
+let menu = new Menu();
+
+let obj = {};
+
+function A() { 
+    return obj;
+}
+function B() {
+    return obj;
+}
+
+let a = new A;
+let b = new B;
+
+// alert( a == b );
 
 
+function Calculator() {
+    this.read = function() {
+        this.a = +prompt("Enter a");
+        this.b = +prompt("Enter b");
+    };
+    this.sum = function() {
+        return this.a + this.b;
+    };
+    this.mul = function() {
+        return this.a * this.b;
+    };
+}
 
+let calc = new Calculator();
+// calc.read();
+// alert(calc.sum());
+// alert(calc.mul());
 
+function Accumulator(startValue) {
+    this.value = startValue;
+    this.read = function() {
+        let number = +prompt("Enter value");
+        if (Number.isInteger(number)){
+            this.value += number;
+        }
+    };
+}
+
+let accum = new Accumulator(5);
+accum.read();
+alert(accum.value);
 
 //////////////////////////////////////////////////////////////////////////////
 // const user = {
@@ -350,18 +401,18 @@ function makeUser() {
 
 
 
-  let calculator = {
-        read() {
-            this.a = prompt("Введите первое число:", 0);
-            this.b = prompt("Введите второе число:", 0);
-        },
-        sum() {
-            return +this.a + +this.b;
-        },
-        mul() {
-            return this.a * this.b;
-        },
-  };
+//   let calculator = {
+//         read() {
+//             this.a = prompt("Введите первое число:", 0);
+//             this.b = prompt("Введите второе число:", 0);
+//         },
+//         sum() {
+//             return +this.a + +this.b;
+//         },
+//         mul() {
+//             return this.a * this.b;
+//         },
+//   };
   
 //   calculator.read();
 //   alert( calculator.sum() );
