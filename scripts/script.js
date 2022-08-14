@@ -1,287 +1,293 @@
 "use strict";
 
-const user = {
-    name: "Anna",
-    age: 24,
-    basket: {
-        linkOnPage: document.querySelector(".inBasket"),
-        content: [
-            // {id: 1, count: 1},
-            // {id: 2, count: 1},
-        ],
-        add(product, button) {
-            let index = this.content.findIndex(item => item.id === product.id);
-            if (index != -1) {
-                this.content[index].count++;
-                // this.showOnIcon();
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////
+// const user = {
+//     name: "Anna",
+//     age: 24,
+//     basket: {
+//         linkOnPage: document.querySelector(".inBasket"),
+//         content: [
+//             // {id: 1, count: 1},
+//             // {id: 2, count: 1},
+//         ],
+//         add(product, button) {
+//             let index = this.content.findIndex(item => item.id === product.id);
+//             if (index != -1) {
+//                 this.content[index].count++;
+//                 // this.showOnIcon();
                 
-                button.innerHTML = `В корзине <br> 
-                    ${this.content[index].count}
-                    <button id="buttonPlus" class="button__counter">+</button>`;
+//                 button.innerHTML = `В корзине <br> 
+//                     ${this.content[index].count}
+//                     <button id="buttonPlus" class="button__counter">+</button>`;
 
-                let buttonPlus = document.querySelector("#buttonPlus");
-                buttonPlus.onclick = () => {
-                    user.basket.add(product, button);
-                };
+//                 let buttonPlus = document.querySelector("#buttonPlus");
+//                 buttonPlus.onclick = () => {
+//                     user.basket.add(product, button);
+//                 };
             
-                return;
-            }
-            this.content.push({id: product.id, count: 1});
-            this.showOnIcon();
-            let newButton = document.createElement('div');
-            newButton.classList.add("button");
-            newButton.innerHTML = `В корзине <br> 
-                ${this.content.find(item => item.id === product.id).count}
-                <button id="buttonPlus" class="button__counter">+</button>`;
+//                 return;
+//             }
+//             this.content.push({id: product.id, count: 1});
+//             this.showOnIcon();
+//             let newButton = document.createElement('div');
+//             newButton.classList.add("button");
+//             newButton.innerHTML = `В корзине <br> 
+//                 ${this.content.find(item => item.id === product.id).count}
+//                 <button id="buttonPlus" class="button__counter">+</button>`;
 
-            button.after(newButton);
-            button.remove();
+//             button.after(newButton);
+//             button.remove();
             
-            let buttonPlus = document.querySelector("#buttonPlus");
-            buttonPlus.onclick = () => {
-                user.basket.add(product, newButton);
-            };
-        },
-        showOnIcon() {
-            this.linkOnPage.innerText = this.content.length;
-        },
-        showBasket(){
-            // console.log(`Basket of ${user.name} = ${this.content[0].id}, count = ${this.content.count}`);
-            const basketWrapper = document.createElement('div');
-            const basketContent = document.createElement('section');
+//             let buttonPlus = document.querySelector("#buttonPlus");
+//             buttonPlus.onclick = () => {
+//                 user.basket.add(product, newButton);
+//             };
+//         },
+//         showOnIcon() {
+//             this.linkOnPage.innerText = this.content.length;
+//         },
+//         showBasket(){
+//             // console.log(`Basket of ${user.name} = ${this.content[0].id}, count = ${this.content.count}`);
+//             const basketWrapper = document.createElement('div');
+//             const basketContent = document.createElement('section');
 
-            basketContent.classList.add("basket__content");
-            basketWrapper.classList.add("basket__wrapper");
+//             basketContent.classList.add("basket__content");
+//             basketWrapper.classList.add("basket__wrapper");
 
-            basketWrapper.addEventListener('click', () => {
-                basketContent.style.display = "none";
-                basketWrapper.style.display = "none";
-            });
+//             basketWrapper.addEventListener('click', () => {
+//                 basketContent.style.display = "none";
+//                 basketWrapper.style.display = "none";
+//             });
 
-            this.content.forEach((elem) => {
-                basketContent.insertAdjacentHTML('beforeend', `Товар: ${products.content.find((item) => item.id === elem.id).name},  количество: ${elem.count}<br>`)
-            });
+//             this.content.forEach((elem) => {
+//                 basketContent.insertAdjacentHTML('beforeend', `Товар: ${products.content.find((item) => item.id === elem.id).name},  количество: ${elem.count}<br>`)
+//             });
 
-            basketWrapper.append(basketContent);
-            header.after(basketWrapper);
-        },
-        // showBasket() {
-        //     console.log(`Basket of ${user.name} = ${this.content[0].id}, count = ${this.content.count}`);
-        // },
-    },
-};
+//             basketWrapper.append(basketContent);
+//             header.after(basketWrapper);
+//         },
+//         // showBasket() {
+//         //     console.log(`Basket of ${user.name} = ${this.content[0].id}, count = ${this.content.count}`);
+//         // },
+//     },
+// };
 
-const sliderSources = [
-    {src: "img/2.jpg", alt: "букет #2"},
-    {src: "img/3.jpg", alt: "букет #3"},
-    {src: "img/4.jpg", alt: "букет #1"},
-    {src: "img/5.jpg", alt: "букет #1"},
+// const sliderSources = [
+//     {src: "img/2.jpg", alt: "букет #2"},
+//     {src: "img/3.jpg", alt: "букет #3"},
+//     {src: "img/4.jpg", alt: "букет #1"},
+//     {src: "img/5.jpg", alt: "букет #1"},
 
-];
+// ];
 
-const catalog = {
-    linkOnPage: document.querySelector(".catalog"),
+// const catalog = {
+//     linkOnPage: document.querySelector(".catalog"),
 
-    clearAreaOnPage(selector) {
-        const areaToClear = document.querySelector(selector); 
-        areaToClear.innerHTML = "";
-    },
-}; 
+//     clearAreaOnPage(selector) {
+//         const areaToClear = document.querySelector(selector); 
+//         areaToClear.innerHTML = "";
+//     },
+// }; 
 
-const products = {
-    content: [
-        {id: 1, name: "букет #1", type: "букет", price: 1000, img: "img/4.jpg", link: "#", description: "Букет состоящий из розовых цветов. Поможет создать романтическую обстановку на любой встрече"},
-        {id: 2, name: "букет #2", type: "букет", price: 1500, img: "img/2.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
-        {id: 3, name: "белые розы", type: "розы", price: 1000, img: "img/1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
-        {id: 4, name: "букет #3", type: "букет", price: 1200, img: "img/3.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
-        {id: 5, name: "белые розы", type: "розы", price: 1000, img: "img/1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
-    ],
+// const products = {
+//     content: [
+//         {id: 1, name: "букет #1", type: "букет", price: 1000, img: "img/4.jpg", link: "#", description: "Букет состоящий из розовых цветов. Поможет создать романтическую обстановку на любой встрече"},
+//         {id: 2, name: "букет #2", type: "букет", price: 1500, img: "img/2.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
+//         {id: 3, name: "белые розы", type: "розы", price: 1000, img: "img/1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
+//         {id: 4, name: "букет #3", type: "букет", price: 1200, img: "img/3.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
+//         {id: 5, name: "белые розы", type: "розы", price: 1000, img: "img/1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
+//     ],
 
-    createCardOnPage(product, linkOnArea) {
-        const card = document.createElement('div');
-        const img = document.createElement('img');
-        const price = document.createElement('p');
-        const name = document.createElement('a');
-        const description = document.createElement('div');
-        const buttonToBuy = document.createElement('button');
+//     createCardOnPage(product, linkOnArea) {
+//         const card = document.createElement('div');
+//         const img = document.createElement('img');
+//         const price = document.createElement('p');
+//         const name = document.createElement('a');
+//         const description = document.createElement('div');
+//         const buttonToBuy = document.createElement('button');
 
-        card.classList = "card";
+//         card.classList = "card";
 
-        img.src = product.img;
-        img.classList = "card__img";
+//         img.src = product.img;
+//         img.classList = "card__img";
 
-        name.innerText = product.name;
-        name.href = product.link;
-        name.classList = "card__name";
+//         name.innerText = product.name;
+//         name.href = product.link;
+//         name.classList = "card__name";
 
-        price.innerText = `${product.price} руб.`;
-        price.classList = "card__price";
+//         price.innerText = `${product.price} руб.`;
+//         price.classList = "card__price";
 
-        let shortDescription = product.description.slice(0, 40);
-        shortDescription += "...";
-        description.innerText = shortDescription;
-        description.classList = "card__description";
-        description.addEventListener('click', () => products.swapDescription(description, product));
+//         let shortDescription = product.description.slice(0, 40);
+//         shortDescription += "...";
+//         description.innerText = shortDescription;
+//         description.classList = "card__description";
+//         description.addEventListener('click', () => products.swapDescription(description, product));
 
-        buttonToBuy.innerText = "Купить";
-        buttonToBuy.classList.add("button");
-        buttonToBuy.addEventListener('click', () => user.basket.add(product, buttonToBuy) );
+//         buttonToBuy.innerText = "Купить";
+//         buttonToBuy.classList.add("button");
+//         buttonToBuy.addEventListener('click', () => user.basket.add(product, buttonToBuy) );
 
-        card.insertAdjacentElement('afterbegin', img);
-        card.insertAdjacentElement('beforeend', name);
-        card.insertAdjacentElement('beforeend', price);
-        card.insertAdjacentElement('beforeend', description);
-        card.insertAdjacentElement('beforeend', buttonToBuy);
+//         card.insertAdjacentElement('afterbegin', img);
+//         card.insertAdjacentElement('beforeend', name);
+//         card.insertAdjacentElement('beforeend', price);
+//         card.insertAdjacentElement('beforeend', description);
+//         card.insertAdjacentElement('beforeend', buttonToBuy);
 
-        linkOnArea.append(card);
+//         linkOnArea.append(card);
 
-    },
+//     },
 
-    swapDescription(elem, product) {
-        if(elem.classList.contains("showed")) {
-            let shortDescription = product.description.slice(0, 40);
-            shortDescription += "...";
-            elem.innerText = shortDescription;
-            elem.classList.remove("showed");
-            return;
-        }
+//     swapDescription(elem, product) {
+//         if(elem.classList.contains("showed")) {
+//             let shortDescription = product.description.slice(0, 40);
+//             shortDescription += "...";
+//             elem.innerText = shortDescription;
+//             elem.classList.remove("showed");
+//             return;
+//         }
 
-        elem.innerText = product.description;
-        elem.classList.add("showed");
-    },
+//         elem.innerText = product.description;
+//         elem.classList.add("showed");
+//     },
 
-    showProducts(products = this.content, linkOnArea = catalog.linkOnPage) {
-        catalog.clearAreaOnPage(".catalog");
-        products.forEach( (product) => {
-            this.createCardOnPage(product, linkOnArea);
-        });
-    },
+//     showProducts(products = this.content, linkOnArea = catalog.linkOnPage) {
+//         catalog.clearAreaOnPage(".catalog");
+//         products.forEach( (product) => {
+//             this.createCardOnPage(product, linkOnArea);
+//         });
+//     },
 
-    showFiltered(type) {
-        const filteredProducts = products.content.filter( (product) => {
-            return product.type === type;
-        });
-        this.showProducts(filteredProducts, catalog.linkOnPage);
-    },
-};
+//     showFiltered(type) {
+//         const filteredProducts = products.content.filter( (product) => {
+//             return product.type === type;
+//         });
+//         this.showProducts(filteredProducts, catalog.linkOnPage);
+//     },
+// };
 
 
-const header = document.querySelector(".header");
-// const sliderElements = document.querySelectorAll(".slider__element>img");
-let sliderElements;
-// const sliderDots = document.querySelectorAll(".slider__dot");
-let sliderDots;
-let sliderCurrentElem = 0;
-let sliderInterval;
+// const header = document.querySelector(".header");
+// // const sliderElements = document.querySelectorAll(".slider__element>img");
+// let sliderElements;
+// // const sliderDots = document.querySelectorAll(".slider__dot");
+// let sliderDots;
+// let sliderCurrentElem = 0;
+// let sliderInterval;
 
-createSlider();
-startSlider();
-products.showProducts();
+// createSlider();
+// startSlider();
+// products.showProducts();
 
-function createSlide(elem) {
-    return `<div class="slider__element">
-        <img src="${elem.src}" alt=""></img> 
-        </div>`;
-}
+// function createSlide(elem) {
+//     return `<div class="slider__element">
+//         <img src="${elem.src}" alt=""></img> 
+//         </div>`;
+// }
 
-function createSlider() {
-    const sliderWrapper = document.querySelector(".slider__wrapper");
-    const slider = document.createElement('section');
+// function createSlider() {
+//     const sliderWrapper = document.querySelector(".slider__wrapper");
+//     const slider = document.createElement('section');
 
-    slider.classList = "slider";
+//     slider.classList = "slider";
 
-    addElementsInSlider(slider);
-    addArrowsSlider(slider);
-    slider.append(createDotsSlider());
+//     addElementsInSlider(slider);
+//     addArrowsSlider(slider);
+//     slider.append(createDotsSlider());
 
-    sliderWrapper.append(slider);
+//     sliderWrapper.append(slider);
 
-    sliderElements = document.querySelectorAll(".slider__element>img");
-    sliderElements[0].style.zIndex = 10;
+//     sliderElements = document.querySelectorAll(".slider__element>img");
+//     sliderElements[0].style.zIndex = 10;
 
-    sliderDots = document.querySelectorAll(".slider__dot");
-    sliderDots[0].classList.add("slider__dot_current");
-}
+//     sliderDots = document.querySelectorAll(".slider__dot");
+//     sliderDots[0].classList.add("slider__dot_current");
+// }
 
-function createDotsSlider() {
-    let sliderDotsWrapper = document.createElement('div');
-    sliderDotsWrapper.classList.add("slider__dots");
+// function createDotsSlider() {
+//     let sliderDotsWrapper = document.createElement('div');
+//     sliderDotsWrapper.classList.add("slider__dots");
     
-    for (let counter = 0; counter < sliderSources.length; counter++ ){
-        addDotSlider(sliderDotsWrapper);
-    } 
+//     for (let counter = 0; counter < sliderSources.length; counter++ ){
+//         addDotSlider(sliderDotsWrapper);
+//     } 
 
-    return sliderDotsWrapper;
-}
+//     return sliderDotsWrapper;
+// }
 
-function addDotSlider(slider) {
-    slider.insertAdjacentHTML('beforeend', "<div class='slider__dot'>.</div>");
-}
+// function addDotSlider(slider) {
+//     slider.insertAdjacentHTML('beforeend', "<div class='slider__dot'>.</div>");
+// }
 
-function addElementsInSlider(slider) {
-    sliderSources.forEach((elem) => {
-        slider.insertAdjacentHTML('beforeend', createSlide(elem));
-     });
-}
+// function addElementsInSlider(slider) {
+//     sliderSources.forEach((elem) => {
+//         slider.insertAdjacentHTML('beforeend', createSlide(elem));
+//      });
+// }
 
-function addArrowsSlider(slider) {
-    slider.insertAdjacentHTML('beforeend', '<img id="slider__next" onclick="sliderNext()" src="img/next.svg" alt="next">');
-    // slider.insertAdjacentHTML('beforeend', '<svg xmlns="http://www.w3.org/2000/svg" xmlns:se="http://svg-edit.googlecode.com" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="777" height="480">                                    <title>my vector image</title>                                    <!-- Created with Vector Paint - http://www.vectorpaint.yaks.com/ https://chrome.google.com/webstore/detail/hnbpdiengicdefcjecjbnjnoifekhgdo -->                                    <rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="#FFFFFF" stroke="none"/>                                <g id="slider__next"  class="currentLayer" style=""><title>Layer 1</title><path fill="#ffffff" fill-opacity="1" stroke="#222222" stroke-opacity="1" stroke-width="9" stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="butt" stroke-dashoffset="" fill-rule="nonzero" opacity="1" marker-start="" marker-mid="" marker-end="" d="M300.76124800871514,263.6042391121738 C281.2105842835298,181.8736996068101 204.6927700128887,137.96819755878838 283.72833789173933,116.91651432060911 C362.7639057705901,95.86481133213302 661.002939636295,156.4969778979452 661.002939636295,194.93917262621767 C661.002939636295,233.38136735449035 443.6011030213182,386.82138282889946 348.4069926274917,408.46555521744506 C253.212882233665,430.1097276059906 320.3119117339006,345.3347786175375 300.76124800871514,263.6042391121738 z" id="svg_17" class="" transform="rotate(14.659220695495605 454.83297729492136,262.24230957031256) "/></g></svg>');
+// function addArrowsSlider(slider) {
+//     slider.insertAdjacentHTML('beforeend', '<img id="slider__next" onclick="sliderNext()" src="img/next.svg" alt="next">');
+//     // slider.insertAdjacentHTML('beforeend', '<svg xmlns="http://www.w3.org/2000/svg" xmlns:se="http://svg-edit.googlecode.com" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="777" height="480">                                    <title>my vector image</title>                                    <!-- Created with Vector Paint - http://www.vectorpaint.yaks.com/ https://chrome.google.com/webstore/detail/hnbpdiengicdefcjecjbnjnoifekhgdo -->                                    <rect id="backgroundrect" width="100%" height="100%" x="0" y="0" fill="#FFFFFF" stroke="none"/>                                <g id="slider__next"  class="currentLayer" style=""><title>Layer 1</title><path fill="#ffffff" fill-opacity="1" stroke="#222222" stroke-opacity="1" stroke-width="9" stroke-dasharray="none" stroke-linejoin="round" stroke-linecap="butt" stroke-dashoffset="" fill-rule="nonzero" opacity="1" marker-start="" marker-mid="" marker-end="" d="M300.76124800871514,263.6042391121738 C281.2105842835298,181.8736996068101 204.6927700128887,137.96819755878838 283.72833789173933,116.91651432060911 C362.7639057705901,95.86481133213302 661.002939636295,156.4969778979452 661.002939636295,194.93917262621767 C661.002939636295,233.38136735449035 443.6011030213182,386.82138282889946 348.4069926274917,408.46555521744506 C253.212882233665,430.1097276059906 320.3119117339006,345.3347786175375 300.76124800871514,263.6042391121738 z" id="svg_17" class="" transform="rotate(14.659220695495605 454.83297729492136,262.24230957031256) "/></g></svg>');
 
-    slider.insertAdjacentHTML('beforeend', '<img id="slider__previous" onclick="sliderPrevious()" src="img/next.svg" alt="previous">');
-}
+//     slider.insertAdjacentHTML('beforeend', '<img id="slider__previous" onclick="sliderPrevious()" src="img/next.svg" alt="previous">');
+// }
 
-function startSlider() {
-     sliderInterval = setInterval(sliderNext, 5000);
-}
+// function startSlider() {
+//      sliderInterval = setInterval(sliderNext, 5000);
+// }
 
-function restartSlider() {
-    clearInterval(sliderInterval);
-    startSlider();
-}
+// function restartSlider() {
+//     clearInterval(sliderInterval);
+//     startSlider();
+// }
 
-function sliderNext() {
-    sliderHideElem(sliderElements[sliderCurrentElem]);
-    sliderDots[sliderCurrentElem].classList.remove("slider__dot_current");
-    countNextElement();
-    sliderShowElem(sliderElements[sliderCurrentElem]);
-    sliderDots[sliderCurrentElem].classList.add("slider__dot_current");
-    restartSlider();
-}
+// function sliderNext() {
+//     sliderHideElem(sliderElements[sliderCurrentElem]);
+//     sliderDots[sliderCurrentElem].classList.remove("slider__dot_current");
+//     countNextElement();
+//     sliderShowElem(sliderElements[sliderCurrentElem]);
+//     sliderDots[sliderCurrentElem].classList.add("slider__dot_current");
+//     restartSlider();
+// }
 
-function sliderPrevious() {
-    sliderHideElem(sliderElements[sliderCurrentElem]);
-    sliderDots[sliderCurrentElem].classList.remove("slider__dot_current");
-    countPreviousElement();
-    sliderShowElem(sliderElements[sliderCurrentElem]);
-    sliderDots[sliderCurrentElem].classList.add("slider__dot_current");
-    restartSlider();
-}
+// function sliderPrevious() {
+//     sliderHideElem(sliderElements[sliderCurrentElem]);
+//     sliderDots[sliderCurrentElem].classList.remove("slider__dot_current");
+//     countPreviousElement();
+//     sliderShowElem(sliderElements[sliderCurrentElem]);
+//     sliderDots[sliderCurrentElem].classList.add("slider__dot_current");
+//     restartSlider();
+// }
 
-function countNextElement(){
-    return sliderCurrentElem = (sliderCurrentElem === sliderSources.length - 1) ?  0 : ++sliderCurrentElem ;
-}
+// function countNextElement(){
+//     return sliderCurrentElem = (sliderCurrentElem === sliderSources.length - 1) ?  0 : ++sliderCurrentElem ;
+// }
 
-function countPreviousElement(){
-    return sliderCurrentElem = (sliderCurrentElem === 0) ? sliderSources.length - 1 : --sliderCurrentElem;
-}
+// function countPreviousElement(){
+//     return sliderCurrentElem = (sliderCurrentElem === 0) ? sliderSources.length - 1 : --sliderCurrentElem;
+// }
 
-function sliderShowElem(elem) {
-    elem.style.zIndex = 10;
-}
+// function sliderShowElem(elem) {
+//     elem.style.zIndex = 10;
+// }
 
-function sliderHideElem(elem) {
-    elem.style.zIndex = 0;
-}
+// function sliderHideElem(elem) {
+//     elem.style.zIndex = 0;
+// }
 
-function filter(type) {
-    const choosenProducts = products.filter( (product) => product.type === type);
+// function filter(type) {
+//     const choosenProducts = products.filter( (product) => product.type === type);
     
-    clearAreaOnPage(".catalog");
-    addElementsOnPage(choosenProducts);
-}
+//     clearAreaOnPage(".catalog");
+//     addElementsOnPage(choosenProducts);
+// }
 
-//======================================================================================================================
+// //======================================================================================================================
 
 let ladder = {
     step: 0,
