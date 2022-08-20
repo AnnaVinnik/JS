@@ -1,5 +1,17 @@
 "use strict";
 
+const person = Object.create({}, {
+    age: {
+        writable: true,
+        get() {
+            return 24;
+        },
+        set(value) {
+            
+        }
+    }
+});
+
 function Menu(name) {
     this.link = "#";
     this.isMain = false;
@@ -53,8 +65,8 @@ function Accumulator(startValue) {
 }
 
 let accum = new Accumulator(5);
-accum.read();
-alert(accum.value);
+// accum.read();
+// alert(accum.value);
 
 //////////////////////////////////////////////////////////////////////////////
 // const user = {
