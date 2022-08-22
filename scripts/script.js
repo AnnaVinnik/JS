@@ -7,7 +7,7 @@ const user = {
         linkOnPage: document.querySelector(".inBasket"),
         content: [],
         add(event) {
-            let index = user.basket.content.findIndex(item => item.id === event.currentTarget.id);
+            let index = user.basket.content.findIndex(item => +item.id === +event.currentTarget.id);
             if (index != -1) {
                 user.basket.content[index].count++;
                 
@@ -23,7 +23,7 @@ const user = {
             
                 return;
             }
-            user.basket.content.push({id: event.currentTarget.id, count: 1});
+            user.basket.content.push({id: +event.currentTarget.id, count: 1});
             user.basket.showOnIcon();
             event.currentTarget.innerHTML = `В корзине <br> 
                     ${user.basket.content.at(-1).count}
