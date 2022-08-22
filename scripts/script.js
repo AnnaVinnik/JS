@@ -18,15 +18,17 @@ const user = {
                 if (user.basket.content[index].count === 0) {
                     event.currentTarget.innerText = "Купить";
                     event.currentTarget.style.cursor = "pointer";
+                    event.currentTarget.classList.add("button__hover");
                     this.showOnIcon();
                     return;
                 }
                 
+                event.currentTarget.classList.remove("button__hover");
+                event.currentTarget.style.cursor = "default";
                 event.currentTarget.innerHTML = `В корзине <br> 
                     <button id="buttonMinus" class="button__counter">-</button>
                     ${user.basket.content[index].count}
                     <button id="buttonPlus" class="button__counter">+</button>`;
-
             
                 return;
             }
@@ -35,6 +37,7 @@ const user = {
                 user.basket.content[index].count++;
                 user.basket.showOnIcon();
 
+                event.currentTarget.classList.remove("button__hover");
                 event.currentTarget.style.cursor = "default";
                 event.currentTarget.innerHTML = `В корзине <br> 
                     <button id="buttonMinus" class="button__counter">-</button>
@@ -46,6 +49,7 @@ const user = {
 
             user.basket.content.push({id: +event.currentTarget.id, count: 1});
             user.basket.showOnIcon();
+            event.currentTarget.classList.remove("button__hover");
             event.currentTarget.style.cursor = "default";
             event.currentTarget.innerHTML = `В корзине <br> 
                     <button id="buttonMinus" class="button__counter">-</button>
@@ -135,6 +139,7 @@ const products = {
 
         buttonToBuy.innerText = "Купить";
         buttonToBuy.classList.add("button");
+        buttonToBuy.classList.add("button__hover");
         buttonToBuy.id = product.id;
         buttonToBuy.addEventListener('click', () => user.basket.add(event) );
 
