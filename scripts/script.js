@@ -18,6 +18,7 @@ const user = {
                 if (user.basket.content[index].count === 0) {
                     event.currentTarget.innerText = "Купить";
                     event.currentTarget.style.cursor = "pointer";
+                    this.showOnIcon();
                     return;
                 }
                 
@@ -52,7 +53,8 @@ const user = {
                     <button id="buttonPlus" class="button__counter">+</button>`;
         },
         showOnIcon() {
-            this.linkOnPage.innerText = this.content.length;
+            let count = this.content.filter((elem) => elem.count > 0).length;
+            this.linkOnPage.innerText = count;
         },
         showBasket(){
             // console.log(`Basket of ${user.name} = ${this.content[0].id}, count = ${this.content.count}`);
@@ -68,15 +70,14 @@ const user = {
             });
 
             this.content.forEach((elem) => {
-                basketContent.insertAdjacentHTML('beforeend', `Товар: ${products.content.find((item) => item.id === elem.id).name},  количество: ${elem.count}<br>`)
+                if (elem.count > 0) {
+                    basketContent.insertAdjacentHTML('beforeend', `Товар: ${products.content.find((item) => item.id === elem.id).name},  количество: ${elem.count}<br>`)
+                }
             });
 
             basketWrapper.append(basketContent);
             header.after(basketWrapper);
         },
-        // showBasket() {
-        //     console.log(`Basket of ${user.name} = ${this.content[0].id}, count = ${this.content.count}`);
-        // },
     },
 };
 
