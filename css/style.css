@@ -27,6 +27,23 @@ body {
     flex-grow: 1;
 }
 
+.user__nav {
+    margin: 0;
+}
+
+.user__nav_item {
+    list-style: none;
+    position: relative;
+}
+
+.user__nav_item>img{
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
 .inBasket {
     position: absolute;
     top: 18px;
@@ -34,6 +51,14 @@ body {
     color:rgb(130, 174, 176);
     font-weight: bold;
     font-family: 'PT Sans', sans-serif;
+    transition: 1s;
+    cursor: pointer;
+}
+
+.user__nav_item:hover .inBasket {
+    color: rgb(255, 255, 255);
+    text-shadow: 0 1px 3px rgb(126, 172, 185), 0 0 5px rgb(100, 131, 142);
+    transition: 0.2s;
 }
 
 .basket__content {
@@ -48,6 +73,7 @@ body {
     border-radius: 0 0 0 10px;
     color: grey;
     font-family: 'PT Sans', sans-serif;
+    box-shadow: 0 1px 10px rgb(132, 152, 162);
 }
 
 .basket__wrapper {
@@ -58,22 +84,6 @@ body {
     z-index: 50;
 }
 
-.user__nav {
-    margin: 0;
-}
-
-.user__nav_item {
-    list-style: none;
-    position: relative;
-}
-
-.user__nav_item>img{
-    width: 50px;
-    height: 50px;
-    margin-right: 20px;
-    position: relative;
-    cursor: pointer;
-}
 
 .slider {
     position: relative;
