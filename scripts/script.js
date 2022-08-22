@@ -8,40 +8,48 @@ const user = {
         content: [],
         add(event) {
             let index = user.basket.content.findIndex(item => +item.id === +event.currentTarget.id);
-            if (index != -1) {
-                user.basket.content[index].count++;
+            if (index != -1 && user.basket.content[index].count !== 0) {
+                if (event.target.id === "buttonPlus") {
+                    user.basket.content[index].count++;
+                } else if (event.target.id === "buttonMinus") {
+                    user.basket.content[index].count--;
+                }
+
+                if (user.basket.content[index].count === 0) {
+                    event.currentTarget.innerText = "Купить";
+                    event.currentTarget.style.cursor = "pointer";
+                    return;
+                }
                 
                 event.currentTarget.innerHTML = `В корзине <br> 
+                    <button id="buttonMinus" class="button__counter">-</button>
                     ${user.basket.content[index].count}
                     <button id="buttonPlus" class="button__counter">+</button>`;
 
-                // let buttonPlus = document.querySelector("#buttonPlus");
-                // buttonPlus.onclick = () => {
-                //     user.basket.add(event);
-                // };
-                // buttonPlus.addEventListener('click', user.basket.add(event));
             
                 return;
             }
+
+            if (index != -1 && user.basket.content[index].count === 0) {
+                user.basket.content[index].count++;
+                user.basket.showOnIcon();
+
+                event.currentTarget.style.cursor = "default";
+                event.currentTarget.innerHTML = `В корзине <br> 
+                    <button id="buttonMinus" class="button__counter">-</button>
+                    ${user.basket.content[index].count}
+                    <button id="buttonPlus" class="button__counter">+</button>`;
+
+                return;
+            }
+
             user.basket.content.push({id: +event.currentTarget.id, count: 1});
             user.basket.showOnIcon();
+            event.currentTarget.style.cursor = "default";
             event.currentTarget.innerHTML = `В корзине <br> 
+                    <button id="buttonMinus" class="button__counter">-</button>
                     ${user.basket.content.at(-1).count}
                     <button id="buttonPlus" class="button__counter">+</button>`;
-            event.currentTarget.style.cursor = "default";
-            // let newButton = document.createElement('div');
-            // newButton.classList.add("button");
-            // newButton.innerHTML = `В корзине <br> 
-            //     ${this.content.find(item => item.id === product.id).count}
-            //     <button id="buttonPlus" class="button__counter">+</button>`;
-
-            // event.target.after(newButton);
-            // button.remove();
-            
-            // let buttonPlus = document.querySelector("#buttonPlus");
-            // buttonPlus.onclick = () => {
-            //     user.basket.add(product, newButton);
-            // };
         },
         showOnIcon() {
             this.linkOnPage.innerText = this.content.length;
