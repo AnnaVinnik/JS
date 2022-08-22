@@ -62,8 +62,26 @@ const user = {
         },
         showBasket(){
             // console.log(`Basket of ${user.name} = ${this.content[0].id}, count = ${this.content.count}`);
-            const basketWrapper = document.createElement('div');
-            const basketContent = document.createElement('section');
+            let basketWrapper;
+            let basketContent;
+            if (basketWrapper = document.querySelector(".basket__wrapper")) {
+                basketContent = document.querySelector(".basket__content");
+
+                basketWrapper.style.display = "block";
+                basketContent.style.display = "block";
+
+                this.content.forEach((elem) => {
+                    basketContent.innerHTML = "";
+                    if (elem.count > 0) {
+                        basketContent.insertAdjacentHTML('beforeend', `Товар: ${products.content.find((item) => item.id === elem.id).name},  количество: ${elem.count}<br>`)
+                    }
+                });
+
+                return;
+            }
+
+            basketWrapper = document.createElement('div');
+            basketContent = document.createElement('section');
 
             basketContent.classList.add("basket__content");
             basketWrapper.classList.add("basket__wrapper");
