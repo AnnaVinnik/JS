@@ -69,9 +69,9 @@ const user = {
 
                 basketWrapper.style.display = "block";
                 basketContent.style.display = "block";
-
+                basketContent.innerHTML = "";
+                
                 this.content.forEach((elem) => {
-                    basketContent.innerHTML = "";
                     if (elem.count > 0) {
                         basketContent.insertAdjacentHTML('beforeend', `Товар: ${products.content.find((item) => item.id === elem.id).name},  количество: ${elem.count}<br>`)
                     }
