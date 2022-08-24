@@ -24,19 +24,16 @@
         <section class="main">
             <aside class="filters">
                 <h2 class="filters__heading">Фильтры:</h2>
-                <button class="button button__hover" onclick="products.showFiltered('букет')">Букеты</button>
-                <button class="button button__hover" onclick="products.showFiltered('розы')">Розы</button>
-                <button class="button button__hover" onclick="products.showProducts()">Показать все</button>
-                <fieldset>
+                <form name="filter">
                     <div>
-                        <input type="checkbox" name="bouquet" id="bouquet">
-                        <label for="bouquet">Букеты</label>
+                        <input class="checkbox__item" type="checkbox" name="bouquet" id="букет">
+                        <label class="checkbox__label" for="bouquet">Букеты</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="rose" id="rose">
-                        <label for="rose">Розы</label>
+                        <input class="checkbox__item" type="checkbox" name="rose" id="розы">
+                        <label class="checkbox__label" for="rose">Розы</label>
                     </div>
-                </fieldset>
+                </form>
             </aside>
             <section class="catalog"></section>
         </section>
