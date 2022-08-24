@@ -270,3 +270,43 @@ body {
     margin-bottom: 10px;
     margin-top: 0;
 }
+
+.checkbox__item {
+    opacity: 0;
+    width: 100px;
+    height: 20px;
+    margin-bottom: 20px;
+}
+
+.checkbox__item:hover + .checkbox__label {
+    text-shadow: 0 0 2px rgb(62, 119, 120);
+}
+
+.checkbox__item:hover + .checkbox__label::before {
+    box-shadow: 0 0 2px rgb(62, 119, 120);
+}
+
+.checkbox__label {
+    position: absolute;
+    font-size: 20px;
+    left: 40px;
+    z-index: -1;
+    font-family: 'PT Sans', sans-serif;
+}
+
+.checkbox__label::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    display: block;
+    border: 1px solid grey;
+    position: absolute;
+    left: -30px;
+    top: 2px;
+    opacity: 1;
+    z-index: -1;
+}
+
+.checkbox__item:checked + .checkbox__label::before {
+    background-color: rgb(132, 132, 132);
+}

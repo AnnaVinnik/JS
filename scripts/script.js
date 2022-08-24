@@ -120,6 +120,11 @@ const catalog = {
     },
 }; 
 
+const filterMenu = document.forms.filter;
+const filterElements = filterMenu.elements;
+
+startFilter();
+
 const products = {
     content: [
         {id: 1, name: "букет #1", type: "букет", price: 1000, img: "img/4.jpg", link: "#", description: "Букет состоящий из розовых цветов. Поможет создать романтическую обстановку на любой встрече"},
@@ -308,6 +313,31 @@ function sliderHideElem(elem) {
     elem.style.zIndex = 0;
 }
 
+function startFilter() {
+    // Array.from(filterElements).forEach( (elem) => {
+        
+    // });
+    filterMenu.addEventListener('change', (event) => {
+        let checkedTypes = [];
+        Array.from(filterElements).filter(elem => elem.checked).forEach( (elem) => {
+            checkedTypes.push(elem.id);
+        });
+        let checkedItems = products.content.filter( (product) => checkedTypes.includes(product.type));
+        
+        catalog.clearAreaOnPage(".catalog");
+        checkedItems.forEach( (product) => {
+            products.createCardOnPage(product, catalog.linkOnPage);
+        })
+
+        if (checkedItems.length == 0) {
+            products.content.forEach( (product) => {
+                products.createCardOnPage(product, catalog.linkOnPage);
+            });
+        }
+    });
+
+}
+
 function filter(type) {
     const choosenProducts = products.filter( (product) => product.type === type);
     
@@ -335,14 +365,14 @@ let ladder = {
 
 ladder.up().up().down().showStep().up().showStep(); // 1
 
-const buttonFirst = document.querySelector('#bouquet');
-buttonFirst.addEventListener('change', () => {
-    if(buttonFirst.checked) {
-        products.showFiltered('букет');
-    } else {
-        products.showProducts(products.content, catalog.linkOnPage);
-    }
-});
+// const buttonFirst = document.querySelector('#bouquet');
+// buttonFirst.addEventListener('change', () => {
+//     if(buttonFirst.checked) {
+//         products.showFiltered('букет');
+//     } else {
+//         products.showProducts(products.content, catalog.linkOnPage);
+//     }
+// });
 
 let indexesOfPropducts = [1, 3, 5, 6];
 let arr = [1, 2, 3, 4, 5];
