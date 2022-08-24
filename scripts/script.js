@@ -141,6 +141,7 @@ const products = {
         const name = document.createElement('a');
         const description = document.createElement('div');
         const buttonToBuy = document.createElement('button');
+        let index = user.basket.content.findIndex( elem => product.id == elem.id);
 
         card.classList = "card";
 
@@ -160,9 +161,17 @@ const products = {
         description.classList = "card__description";
         description.addEventListener('click', () => products.swapDescription(description, product));
 
-        buttonToBuy.innerText = "Купить";
+        if (index >= 0 && user.basket.content[index].count > 0) {
+            buttonToBuy.innerHTML = `В корзине <br> 
+                <button id="buttonMinus" class="button__counter">-</button>
+                ${user.basket.content[index].count}
+                <button id="buttonPlus" class="button__counter">+</button>`;
+        } else {
+            buttonToBuy.innerText = "Купить";
+            buttonToBuy.classList.add("button__hover");
+        }
+
         buttonToBuy.classList.add("button");
-        buttonToBuy.classList.add("button__hover");
         buttonToBuy.id = product.id;
         buttonToBuy.addEventListener('click', () => user.basket.add(event) );
 
