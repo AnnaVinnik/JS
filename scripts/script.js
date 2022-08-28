@@ -104,9 +104,9 @@ const user = {
 };
 
 const sliderSources = [
-    {src: "img/2.jpg", alt: "букет #2"},
-    {src: "img/3.jpg", alt: "букет #3"},
-    {src: "img/4.jpg", alt: "букет #1"},
+    {src: "img/8.jpg", alt: "букет #2"},
+    {src: "img/7.jpg", alt: "букет #3"},
+    {src: "img/6.jpg", alt: "букет #4"},
     {src: "img/5.jpg", alt: "букет #1"},
 
 ];
@@ -129,9 +129,11 @@ const products = {
     content: [
         {id: 1, name: "букет #1", type: "букет", price: 1000, img: "img/4.jpg", link: "#", description: "Букет состоящий из розовых цветов. Поможет создать романтическую обстановку на любой встрече"},
         {id: 2, name: "букет #2", type: "букет", price: 1500, img: "img/2.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
-        {id: 3, name: "белые розы", type: "розы", price: 1000, img: "img/1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
+        {id: 3, name: "белые розы", type: "розы", price: 1000, img: "img/1.jpg", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
         {id: 4, name: "букет #3", type: "букет", price: 1200, img: "img/3.jpg", link: "#", description: "Букет из разноцветных роз станет прекрасным подарком на любой праздник"},
-        {id: 5, name: "белые розы", type: "розы", price: 1000, img: "img/1.png", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
+        {id: 5, name: "белые розы", type: "розы", price: 1000, img: "img/1.jpg", link: "#", description: "Букет из 50 белых роз. Поможет создать романтическую обстановку на любой встрече"},
+        {id: 6, name: "белые тюльпаны", type: "тюльпаны", price: 1000, img: "img/9.jpg", link: "#", description: "Нежные белые тюльпаны"},
+        {id: 7, name: "тюльпаны", type: "тюльпаны", price: 1500, img: "img/10.jpg", link: "#", description: "Нежные тюльпаны"},
     ],
 
     createCardOnPage(product, linkOnArea) {
